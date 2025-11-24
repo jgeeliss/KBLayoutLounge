@@ -13,7 +13,7 @@ class KeyboardController extends Controller
     public function index()
     {
         $keyboards = Keyboard::all();
-        
+
         return view('keyboards.index', compact('keyboards'));
     }
 
@@ -33,6 +33,8 @@ class KeyboardController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'layout' => 'required|array',
+            'layout.*.*' => 'required|string',
         ]);
 
         $keyboard = Keyboard::create($validated);

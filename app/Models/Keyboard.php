@@ -12,5 +12,10 @@ class Keyboard extends Model
     protected $fillable = [
         'name',
         'description',
+        'layout',
+    ];
+
+    protected $casts = [
+        'layout' => 'array',
     ];
 }
