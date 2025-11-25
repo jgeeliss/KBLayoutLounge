@@ -4,8 +4,7 @@
 
 @foreach($keyboards as $keyboard)
 <div>
-    <h2>{{ $keyboard->name }}</h2>
-    <p>{{ $keyboard->description }}</p>
+    <h3><a href="{{ route('keyboards.show', $keyboard) }}">{{ $keyboard->name }}</a></h3>
 
     @if($keyboard->layout)
     <div style="margin-top: 10px;">
