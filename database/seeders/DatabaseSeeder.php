@@ -21,5 +21,8 @@ class DatabaseSeeder extends Seeder
             'user_alias' => 'test_user',
             'email' => 'test@example.com',
         ]);
+
+        // Seed some famous keyboard layouts with their creators
+        $this->call(KeyboardLayoutSeeder::class);
     }
 }
