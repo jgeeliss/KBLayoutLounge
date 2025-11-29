@@ -41,6 +41,8 @@
         </div>
     </form>
 </div>
+@else
+<p style="margin-top: 20px;"><a href="{{ route('login') }}">Login</a> to rate this layout.</p>
 @endif
 
 @endsection
