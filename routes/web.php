@@ -11,6 +11,7 @@ Route::get('/keyboard/create', [KeyboardController::class, 'create'])->name('key
 Route::post('/keyboards', [KeyboardController::class, 'store'])->name('keyboards.store');
 Route::get('/keyboards/{keyboard}', [\App\Http\Controllers\KeyboardController::class, 'show'])->name('keyboards.show');
 Route::post('/keyboards/{keyboard}/rate', [\App\Http\Controllers\KeyboardController::class, 'rate'])->name('keyboards.rate');
+Route::post('/keyboards/{keyboard}/comment', [\App\Http\Controllers\KeyboardController::class, 'comment'])->name('keyboards.comment');
 
 Route::get('/signup', [\App\Http\Controllers\AuthController::class, 'create'])->name('signup');
 Route::post('/signup', [\App\Http\Controllers\AuthController::class, 'store']);

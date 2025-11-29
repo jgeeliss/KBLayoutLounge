@@ -2,25 +2,11 @@
 
 @section('content')
 
-<h2>{{ $keyboard->name }}</h2>
-<p><small>by {{ $keyboard->user->user_alias ?? 'Unknown' }}</small></p>
-
 @php
     $avgRating = $keyboard->averageRating();
     $totalRatings = $keyboard->totalRatings();
     $userRating = auth()->check() ? $keyboard->ratings()->where('user_id', auth()->id())->first() : null;
 @endphp
-
-@if($avgRating)
-<div style="margin: 10px 0;">
-    <strong>Average Rating:</strong> {{ number_format($avgRating, 1) }} / 5 ({{ $totalRatings }} {{ $totalRatings == 1 ? 'rating' : 'ratings' }})
-</div>
-@endif
-
-@if($keyboard->description)
-<p>{{ $keyboard->description }}</p>
-@endif
-@include('keyboards._layout', ['keyboard' => $keyboard])
 
 @if(auth()->check())
 <div style="margin-top: 20px; padding: 15px; background-color: var(--accent-bg); border-radius: 5px;">
@@ -44,5 +30,35 @@
 @else
 <p style="margin-top: 20px;"><a href="{{ route('login') }}">Login</a> to rate this layout.</p>
 @endif
+
+<h2>{{ $keyboard->name }}</h2>
+<p><small>by {{ $keyboard->user->user_alias ?? 'Unknown' }}</small></p>
+
+@if($avgRating)
+<div style="margin: 10px 0;">
+    <strong>Average Rating:</strong> {{ number_format($avgRating, 1) }} / 5 ({{ $totalRatings }} {{ $totalRatings == 1 ? 'rating' : 'ratings' }})
+</div>
+@endif
+
+@if($keyboard->description)
+<p>{{ $keyboard->description }}</p>
+@endif
+@include('keyboards._layout', ['keyboard' => $keyboard])
+
+@if(auth()->check())
+<div style="margin-top: 20px; padding: 15px; background-color: var(--accent-bg); border-radius: 5px;">
+    <h3>Leave a Comment</h3>
+    <form action="{{ route('keyboards.comment', $keyboard) }}" method="POST">
+        @csrf
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <textarea name="comment" rows="4" placeholder="Share your thoughts about this keyboard layout..." style="width: 100%; padding: 10px; border-radius: 5px;"></textarea>
+            <button type="submit">Post Comment</button>
+        </div>
+    </form>
+</div>
+@else
+<p style="margin-top: 20px;"><a href="{{ route('login') }}">Login</a> to leave a comment.</p>
+@endif
+
 
 @endsection
