@@ -60,5 +60,20 @@
 <p style="margin-top: 20px;"><a href="{{ route('login') }}">Login</a> to leave a comment.</p>
 @endif
 
+<div style="margin-top: 30px;">
+    <h3>Comments ({{ $keyboard->comments()->count() }})</h3>
+
+    @forelse($keyboard->comments()->latest()->get() as $comment)
+        <div style="margin: 15px 0; padding: 15px; background-color: var(--accent-bg); border-radius: 5px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <strong>{{ $comment->user->user_alias }}</strong>
+                <small style="color: var(--text-light);">{{ $comment->created_at->diffForHumans() }}</small>
+            </div>
+            <p style="margin: 0;">{{ $comment->comment }}</p>
+        </div>
+    @empty
+        <p style="color: var(--text-light);">No comments yet. Be the first to comment!</p>
+    @endforelse
+</div>
 
 @endsection
