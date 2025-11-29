@@ -6,8 +6,16 @@
 <p><small>by {{ $keyboard->user->user_alias ?? 'Unknown' }}</small></p>
 
 @php
+    $avgRating = $keyboard->averageRating();
+    $totalRatings = $keyboard->totalRatings();
     $userRating = auth()->check() ? $keyboard->ratings()->where('user_id', auth()->id())->first() : null;
 @endphp
+
+@if($avgRating)
+<div style="margin: 10px 0;">
+    <strong>Average Rating:</strong> {{ number_format($avgRating, 1) }} / 5 ({{ $totalRatings }} {{ $totalRatings == 1 ? 'rating' : 'ratings' }})
+</div>
+@endif
 
 @if($keyboard->description)
 <p>{{ $keyboard->description }}</p>

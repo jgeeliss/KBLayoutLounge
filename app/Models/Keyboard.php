@@ -29,4 +29,14 @@ class Keyboard extends Model
     {
         return $this->hasMany(Rating::class);
     }
+
+    public function averageRating()
+    {
+        return $this->ratings()->avg('rating');
+    }
+
+    public function totalRatings()
+    {
+        return $this->ratings()->count();
+    }
 }
