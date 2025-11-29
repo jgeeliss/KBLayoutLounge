@@ -23,21 +23,21 @@
 @include('keyboards._layout', ['keyboard' => $keyboard])
 
 @if(auth()->check())
-<div>
+<div style="margin-top: 20px; padding: 15px; background-color: var(--accent-bg); border-radius: 5px;">
     <h3>Rate this layout</h3>
     @if($userRating)
-        <p>Your current rating: {{ $userRating->rating }} stars</p>
+        <p style="color: var(--text-light); font-size: 0.9rem;">Your current rating: {{ $userRating->rating }} stars</p>
     @endif
     <form action="{{ route('keyboards.rate', $keyboard) }}" method="POST">
         @csrf
-        <div>
+        <div style="display: flex; gap: 10px; align-items: center;">
             @for($i = 1; $i <= 5; $i++)
                 <label style="cursor: pointer;">
                     <input type="radio" name="rating" value="{{ $i }}" {{ $userRating && $userRating->rating == $i ? 'checked' : '' }} required>
                     <span style="font-size: 1.5rem;">{{ $i }}★</span>
                 </label>
             @endfor
-            <button type="submit">Submit Rating</button>
+            <button type="submit" style="margin-left: 10px;">Submit Rating</button>
         </div>
     </form>
 </div>
