@@ -10,6 +10,7 @@ Route::get('/keyboards', [KeyboardController::class, 'index'])->name('keyboards.
 Route::get('/keyboard/create', [KeyboardController::class, 'create'])->name('keyboards.create');
 Route::post('/keyboards', [KeyboardController::class, 'store'])->name('keyboards.store');
 Route::get('/keyboards/{keyboard}', [\App\Http\Controllers\KeyboardController::class, 'show'])->name('keyboards.show');
+Route::post('/keyboards/{keyboard}/rate', [\App\Http\Controllers\KeyboardController::class, 'rate'])->name('keyboards.rate');
 
 Route::get('/signup', [\App\Http\Controllers\AuthController::class, 'create'])->name('signup');
 Route::post('/signup', [\App\Http\Controllers\AuthController::class, 'store']);

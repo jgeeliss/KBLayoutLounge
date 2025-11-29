@@ -107,4 +107,26 @@ class KeyboardController extends Controller
         return redirect()->route('keyboards.index')
             ->with('success', 'Keyboard deleted successfully.');
     }
+
+    public function rate(Request $request, Keyboard $keyboard)
+    {
+        $validated = $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+        ]);
+
+        // note: this is a special eloquent method that will either update an existing or create a new one
+        \App\Models\Rating::updateOrCreate(
+            // first array is the conditions to find existing rating
+            [
+                'user_id' => auth()->id(),
+                'keyboard_id' => $keyboard->id,
+            ],
+            // second array is the values to update or create
+            [
+                'rating' => $validated['rating'],
+            ]
+        );
+
+        return back()->with('status', 'Rating submitted successfully!');
+    }
 }
