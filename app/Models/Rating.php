@@ -2,22 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Keyboard extends Model
+class Rating extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description',
-        'layout',
         'user_id',
+        'keyboard_id',
+        'rating',
     ];
 
     protected $casts = [
-        'layout' => 'array',
+        'rating' => 'integer',
     ];
 
     public function user()
@@ -25,8 +24,8 @@ class Keyboard extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function ratings()
+    public function keyboard()
     {
-        return $this->hasMany(Rating::class);
+        return $this->belongsTo(Keyboard::class);
     }
 }

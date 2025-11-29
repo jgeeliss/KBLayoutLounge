@@ -52,4 +52,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Keyboard::class);
     }
 
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
+
 }
