@@ -257,7 +257,8 @@ header nav ol {
     margin: 0;
     padding: 0;
     list-style-type: none;
-    display: flex
+    display: flex;
+    padding: 20px 0;
 }
 
 header nav ul li,
@@ -282,7 +283,8 @@ header nav a:visited {
     margin: 0 .5rem 1rem;
     padding: .1rem 1rem;
     text-decoration: none;
-    display: inline-block
+    display: inline-block;
+    background-color: var(--accent-bg);
 }
 
 /* Last clicked header nav link styling */

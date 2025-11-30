@@ -61,6 +61,6 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->flash('status', 'You are no longer logged in!');
 
-        return redirect()->back();
+        return redirect()->route('home')->with('status', 'You have been logged out successfully.');
     }
 }
