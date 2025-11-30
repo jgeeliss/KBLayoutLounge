@@ -5,6 +5,7 @@ use App\Http\Controllers\KeyboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
+Route::get('/about', fn() => view('about'))->name('about');
 
 Route::get('/keyboards', [KeyboardController::class, 'index'])->name('keyboards.index');
 Route::get('/keyboard/create', [KeyboardController::class, 'create'])->name('keyboards.create');
@@ -12,6 +13,7 @@ Route::post('/keyboards', [KeyboardController::class, 'store'])->name('keyboards
 Route::get('/keyboards/{keyboard}', [\App\Http\Controllers\KeyboardController::class, 'show'])->name('keyboards.show');
 Route::post('/keyboards/{keyboard}/rate', [\App\Http\Controllers\KeyboardController::class, 'rate'])->name('keyboards.rate');
 Route::post('/keyboards/{keyboard}/comment', [\App\Http\Controllers\KeyboardController::class, 'comment'])->name('keyboards.comment');
+
 
 Route::get('/signup', [\App\Http\Controllers\AuthController::class, 'create'])->name('signup');
 Route::post('/signup', [\App\Http\Controllers\AuthController::class, 'store']);
