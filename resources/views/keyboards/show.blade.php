@@ -32,13 +32,12 @@
 @endif
 
 <h2>{{ $keyboard->name }}</h2>
-<p><small>by {{ $keyboard->user->user_alias ?? 'Unknown' }}</small></p>
-
-@if($avgRating)
-<div style="margin: 10px 0;">
-    <strong>Average Rating:</strong> {{ number_format($avgRating, 1) }} / 5 ({{ $totalRatings }} {{ $totalRatings == 1 ? 'rating' : 'ratings' }})
-</div>
-@endif
+<p>
+    <small>by {{ $keyboard->user->user_alias ?? 'Unknown' }}</small>
+    @if($avgRating)
+        <small style="color: #666;">&nbsp;&nbsp;&nbsp;★ {{ number_format($avgRating, 1) }} ({{ $totalRatings }} {{ $totalRatings == 1 ? 'rating' : 'ratings' }})</small>
+    @endif
+</p>
 
 @if($keyboard->description)
 <p>{{ $keyboard->description }}</p>
