@@ -26,7 +26,7 @@ After cloning this repository, follow these steps to get started:
 
 1. **Install dependencies**
    ```bash
-   composer install
+   composer run setup
    ```
 
 2. **Set up environment**
@@ -34,9 +34,9 @@ After cloning this repository, follow these steps to get started:
    cp .env.example .env
    ```
 
-3. **Generate application key**
+3. **Build assets**
    ```bash
-   php artisan key:generate
+   npm run build
    ```
 
 4. **Create database**
@@ -44,22 +44,10 @@ After cloning this repository, follow these steps to get started:
    touch database/database.sqlite
    ```
 
-5. **Run migrations**
-   ```bash
-   php artisan migrate
-   ```
-
-6. **Seed the database** (optional)
+5. **Seed the database** (optional)
    ```bash
    php artisan db:seed
    ```
-
-7. **Start the development server**
-   ```bash
-   php artisan serve
-   ```
-
-   The application will be available at `http://localhost:8000`
 
 ## Development
 
