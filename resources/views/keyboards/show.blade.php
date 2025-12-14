@@ -43,6 +43,14 @@
     <span class="text-medium text-light-gray">&nbsp;&nbsp;&nbsp;{{ $keyboard->created_at->diffForHumans() }}</span>
 </p>
 
+@if($isOwner)
+<div>
+    <a href="{{ route('keyboards.edit', $keyboard) }}">
+        <button>Edit Layout</button>
+    </a>
+</div>
+@endif
+
 @if($keyboard->description)
 <p>{{ $keyboard->description }}</p>
 @endif

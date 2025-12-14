@@ -27,7 +27,7 @@ class KeyboardLayoutSeeder extends Seeder
             'layout' => [
                 ['/', 'L', 'R', 'W', 'X', '\'', 'F', 'U', 'O', 'Q'],
                 ['S', 'T', 'N', 'D', 'M', 'P', 'H', 'E', 'A', 'I'],
-                ['v', 'Z', 'J', 'G', 'C', 'B', 'K', 'Y', '.', ','],
+                ['V', 'Z', 'J', 'G', 'C', 'B', 'K', 'Y', '.', ','],
             ],
             'user_id' => $dutchmanUser->id,
             'created_at' => now()->subDays(rand(1, 120)),

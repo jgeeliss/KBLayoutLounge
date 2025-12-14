@@ -14,6 +14,8 @@ Route::get('/keyboards/my-ratings', [KeyboardController::class, 'myRatings'])->n
 Route::get('/keyboard/create', [KeyboardController::class, 'create'])->name('keyboards.create');
 Route::post('/keyboards', [KeyboardController::class, 'store'])->name('keyboards.store');
 Route::get('/keyboards/{keyboard}', [\App\Http\Controllers\KeyboardController::class, 'show'])->name('keyboards.show');
+Route::get('/keyboards/{keyboard}/edit', [\App\Http\Controllers\KeyboardController::class, 'edit'])->name('keyboards.edit');
+Route::put('/keyboards/{keyboard}', [\App\Http\Controllers\KeyboardController::class, 'update'])->name('keyboards.update');
 Route::post('/keyboards/{keyboard}/rate', [\App\Http\Controllers\KeyboardController::class, 'rate'])->name('keyboards.rate');
 Route::post('/keyboards/{keyboard}/comment', [\App\Http\Controllers\KeyboardController::class, 'comment'])->name('keyboards.comment');
 

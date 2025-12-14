@@ -2,8 +2,22 @@
 
 @section('content')
 <div>
-    <form action="{{ route('keyboards.store') }}" method="POST">
+    @php
+        $isEditing = isset($keyboard);
+        $formAction = $isEditing ? route('keyboards.update', $keyboard) : route('keyboards.store');
+        $buttonText = $isEditing ? 'Update Keyboard' : 'Create Keyboard';
+        $cancelRoute = $isEditing ? route('keyboards.show', $keyboard) : route('keyboards.index');
+    @endphp
+
+    @if($isEditing)
+        <h2>Edit Keyboard Layout</h2>
+    @endif
+
+    <form action="{{ $formAction }}" method="POST">
         @csrf
+        @if($isEditing)
+            @method('PUT')
+        @endif
 
         <div>
             <label for="name">
@@ -13,7 +27,7 @@
                 type="text"
                 name="name"
                 id="name"
-                value="{{ old('name') }}"
+                value="{{ old('name', $keyboard->name ?? '') }}"
                 required
                 placeholder="Enter keyboard name">
         </div>
@@ -26,7 +40,7 @@
                 name="description"
                 id="description"
                 rows="5"
-                placeholder="Enter keyboard description">{{ old('description') }}</textarea>
+                placeholder="Enter keyboard description">{{ old('description', $keyboard->description ?? '') }}</textarea>
         </div>
 
         <div>
@@ -42,14 +56,15 @@
                 ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';'],
                 ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/']
             ];
-            $oldLayout = old('layout', $qwertyLayout);
+            $defaultLayout = $isEditing ? $keyboard->layout : $qwertyLayout;
+            $currentLayout = old('layout', $defaultLayout);
             @endphp
-            @foreach($oldLayout as $rowIndex => $row)
+            @foreach($currentLayout as $rowIndex => $row)
             <div class="keyboard-row" style="padding-left: {{ $rowIndex * 20 }}px; padding-right: {{ (3-$rowIndex) * 20 }}px;">
-                @foreach($row as $colIndex => $defaultKey)
+                @foreach($row as $colIndex => $currentKey)
                 <select name="layout[{{ $rowIndex }}][{{ $colIndex }}]" class="keyboard-key{{ $colIndex == 5 ? ' keyboard-key-spacer' : '' }}">
                     @foreach(array_merge(range('A', 'Z'), ['.', ',', '/', ';', '\'']) as $letter)
-                    <option value="{{ $letter }}" {{ $defaultKey == $letter ? 'selected' : '' }}>{{ $letter }}</option>
+                    <option value="{{ $letter }}" {{ $currentKey == $letter ? 'selected' : '' }}>{{ $letter }}</option>
                     @endforeach
                 </select>
                 @endforeach
@@ -60,10 +75,10 @@
         <div>
             <button
                 type="submit">
-                Create Keyboard
+                {{ $buttonText }}
             </button>
             <a
-                href="{{ route('keyboards.index') }}">
+                href="{{ $cancelRoute }}">
                 Cancel
             </a>
         </div>

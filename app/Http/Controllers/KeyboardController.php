@@ -128,7 +128,18 @@ class KeyboardController extends Controller
      */
     public function edit(Keyboard $keyboard)
     {
-        return view('keyboards.edit', compact('keyboard'));
+        // Check if user is authenticated
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('status', 'You must be logged in to edit a keyboard layout.');
+        }
+
+        // Check if the user owns this keyboard
+        if ($keyboard->user_id !== auth()->id()) {
+            return redirect()->route('keyboards.show', $keyboard)
+                ->with('status', 'You can only edit your own keyboard layouts.');
+        }
+
+        return view('keyboards.create', compact('keyboard'));
     }
 
     /**
@@ -136,14 +147,41 @@ class KeyboardController extends Controller
      */
     public function update(Request $request, Keyboard $keyboard)
     {
+        // Check if the user owns this keyboard
+        if ($keyboard->user_id !== auth()->id()) {
+            return redirect()->route('keyboards.show', $keyboard)
+                ->with('status', 'You can only edit your own keyboard layouts.');
+        }
+
         $validated = $request->validate([
-            // Add your validation rules here
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'layout' => 'required|array',
+            'layout.*.*' => 'required|string',
         ]);
+
+        // Check for duplicate characters in the layout
+        $allKeys = [];
+        foreach ($validated['layout'] as $row) {
+            foreach ($row as $key) {
+                $allKeys[] = $key;
+            }
+        }
+
+        $duplicates = array_filter(array_count_values($allKeys), function ($count) {
+            return $count > 1;
+        });
+
+        if (!empty($duplicates)) {
+            return back()->withInput()->withErrors([
+                'layout' => 'Each character can only be used once in the layout. Duplicate characters: '.implode(', ', array_keys($duplicates)),
+            ]);
+        }
 
         $keyboard->update($validated);
 
-        return redirect()->route('keyboards.index')
-            ->with('success', 'Keyboard updated successfully.');
+        return redirect()->route('keyboards.show', $keyboard)
+            ->with('status', 'Keyboard updated successfully.');
     }
 
     /**
