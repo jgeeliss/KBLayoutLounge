@@ -26,7 +26,7 @@
                 <li class="dropdown">
                     <a href="#" onclick="toggleDropdown(event)">User {{ auth()->user()->user_alias }}</a>
                     <ul id="dropdown-menu" style="display: none; position: absolute;">
-                        <li style="display: block; text-align: left;"><a href="{{ route('logout') }}">My layouts</a></li>
+                        <li style="display: block; text-align: left;"><a href="{{ route('keyboards.myLayouts') }}">My layouts</a></li>
                         <li style="display: block; text-align: left;"><a href="{{ route('logout') }}">My comments</a></li>
                         <li style="display: block; text-align: left;"><a href="{{ route('logout') }}">My ratings</a></li>
                         <li style="display: block; text-align: left;"><a href="{{ route('logout') }}">Logout</a></li>

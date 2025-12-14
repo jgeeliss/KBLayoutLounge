@@ -18,6 +18,20 @@ class KeyboardController extends Controller
     }
 
     /**
+     * Display the authenticated user's keyboards.
+     */
+    public function myLayouts()
+    {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('status', 'You must be logged in to view your layouts.');
+        }
+
+        $keyboards = Keyboard::where('user_id', auth()->id())->get();
+
+        return view('keyboards.my-layouts', compact('keyboards'));
+    }
+
+    /**
      * Show the form for creating a new keyboard.
      */
     public function create()
