@@ -32,7 +32,7 @@
         <div>
             <label>Keyboard Layout</label>
             @if ($errors->has('layout'))
-                <div style="color: red; margin-bottom: 10px;">
+                <div class="error-box">
                     {{ $errors->first('layout') }}
                 </div>
             @endif
@@ -45,9 +45,9 @@
             $oldLayout = old('layout', $qwertyLayout);
             @endphp
             @foreach($oldLayout as $rowIndex => $row)
-            <div style="display: flex; gap: 4px; margin-bottom: 4px; padding-left: {{ $rowIndex * 20 }}px; padding-right: {{ (3-$rowIndex) * 20 }}px;">
+            <div class="keyboard-row" style="padding-left: {{ $rowIndex * 20 }}px; padding-right: {{ (3-$rowIndex) * 20 }}px;">
                 @foreach($row as $colIndex => $defaultKey)
-                <select name="layout[{{ $rowIndex }}][{{ $colIndex }}]" style="flex: 1; max-width: 50px; font-size: 12px; {{ $colIndex == 5 ? 'margin-left: 20px;' : '' }}">
+                <select name="layout[{{ $rowIndex }}][{{ $colIndex }}]" class="keyboard-key{{ $colIndex == 5 ? ' keyboard-key-spacer' : '' }}">
                     @foreach(array_merge(range('A', 'Z'), ['.', ',', '/', ';', '\'']) as $letter)
                     <option value="{{ $letter }}" {{ $defaultKey == $letter ? 'selected' : '' }}>{{ $letter }}</option>
                     @endforeach

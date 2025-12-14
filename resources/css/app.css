@@ -3,6 +3,186 @@
   src: url("LinBiolinum_Kah.ttf");
 }
 
+/* keyboard layout and comments */
+.card {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: var(--accent-bg);
+  border-radius: 5px;
+}
+
+.card-compact {
+  margin: 15px 0;
+  padding: 15px;
+  background-color: var(--accent-bg);
+  border-radius: 5px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  margin: 0 0 5px 0;
+}
+
+.card-content {
+  margin: 10px 0 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.flex-center {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.text-muted {
+  color: var(--text-light);
+}
+
+.text-small {
+  font-size: 0.9rem;
+}
+
+.text-medium {
+  font-size: medium;
+}
+
+.text-gray {
+  color: #666;
+}
+
+.text-light-gray {
+  color: #999;
+}
+
+/* Header and Navigation */
+.status-message {
+  position: fixed;
+  top: 55px;
+  width: 100%;
+}
+
+.nav-spacer {
+  flex-grow: 1;
+}
+
+.nav-spacer-small {
+  flex-grow: 0.1;
+}
+
+.logo-number {
+  font-family: LinBiolinum_Kah, serif;
+  font-size: 1.2em;
+  letter-spacing: -0.1em;
+}
+
+.logo-text {
+  margin-left: 0.1em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+}
+
+.dropdown-menu-visible {
+  display: block;
+}
+
+.dropdown-item {
+  display: block;
+  text-align: left;
+}
+
+.rating-label {
+  cursor: pointer;
+}
+
+.rating-star {
+  font-size: 1.5rem;
+}
+
+.comment-textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Keyboard layout editor */
+.keyboard-row {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.keyboard-key {
+  flex: 1;
+  max-width: 50px;
+  font-size: 12px;
+}
+
+.keyboard-key-spacer {
+  margin-left: 20px;
+}
+
+/* Keyboard layout display */
+.layout-container {
+  margin-top: 10px;
+}
+
+.layout-wrapper {
+  display: inline-block;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: monospace;
+}
+
+.layout-row {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.layout-key {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-weight: bold;
+  color: #222222;
+}
+
+.layout-key-empty {
+  background: gray;
+}
+
+.layout-key-spacer {
+  margin-left: 15px;
+}
+
 /* some classless css, source: https://unpkg.com/simpledotcss@2.3.7/simple.min.css */
 :root {
     --sans-font: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Nimbus Sans L", Roboto, "Noto Sans", "Segoe UI", Arial, Helvetica, "Helvetica Neue", sans-serif;

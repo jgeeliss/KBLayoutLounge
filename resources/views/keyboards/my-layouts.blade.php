@@ -12,9 +12,9 @@
         <h3>
             <a href="{{ route('keyboards.show', $keyboard) }}">{{ $keyboard->name }}</a>
             @if($keyboard->totalRatings() > 0)
-                <span style="font-size: medium; color: #666;">&nbsp;&nbsp;&nbsp;★ {{ number_format($keyboard->averageRating(), 1) }} ({{ $keyboard->totalRatings() }} {{ $keyboard->totalRatings() === 1 ? 'rating' : 'ratings' }})</span>
+                <span class="text-medium text-gray">&nbsp;&nbsp;&nbsp;★ {{ number_format($keyboard->averageRating(), 1) }} ({{ $keyboard->totalRatings() }} {{ $keyboard->totalRatings() === 1 ? 'rating' : 'ratings' }})</span>
             @endif
-            <span style="font-size: medium; color: #999;">&nbsp;&nbsp;&nbsp;{{ $keyboard->created_at->diffForHumans() }}</span>
+            <span class="text-medium text-light-gray">&nbsp;&nbsp;&nbsp;{{ $keyboard->created_at->diffForHumans() }}</span>
         </h3>
 
         @include('keyboards._layout', ['keyboard' => $keyboard])
