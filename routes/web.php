@@ -10,6 +10,7 @@ Route::view('/about', 'about')->name('about');
 Route::get('/keyboards', [KeyboardController::class, 'index'])->name('keyboards.index');
 Route::get('/keyboards/my-layouts', [KeyboardController::class, 'myLayouts'])->name('keyboards.myLayouts');
 Route::get('/keyboards/my-comments', [KeyboardController::class, 'myComments'])->name('keyboards.myComments');
+Route::get('/keyboards/my-ratings', [KeyboardController::class, 'myRatings'])->name('keyboards.myRatings');
 Route::get('/keyboard/create', [KeyboardController::class, 'create'])->name('keyboards.create');
 Route::post('/keyboards', [KeyboardController::class, 'store'])->name('keyboards.store');
 Route::get('/keyboards/{keyboard}', [\App\Http\Controllers\KeyboardController::class, 'show'])->name('keyboards.show');

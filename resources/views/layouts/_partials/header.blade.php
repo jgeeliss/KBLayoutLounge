@@ -28,7 +28,7 @@
                     <ul id="dropdown-menu" class="dropdown-menu">
                         <li class="dropdown-item"><a href="{{ route('keyboards.myLayouts') }}">My layouts</a></li>
                         <li class="dropdown-item"><a href="{{ route('keyboards.myComments') }}">My comments</a></li>
-                        <li class="dropdown-item"><a href="{{ route('logout') }}">My ratings</a></li>
+                        <li class="dropdown-item"><a href="{{ route('keyboards.myRatings') }}">My ratings</a></li>
                         <li class="dropdown-item"><a href="{{ route('logout') }}">Logout</a></li>
                     </ul>
                 </li>
