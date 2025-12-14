@@ -149,6 +149,10 @@
   margin-left: 20px;
 }
 
+.btn-delete {
+  background-color: #d33;
+  color: white;
+}
 /* Keyboard layout display */
 .layout-container {
   margin-top: 10px;
