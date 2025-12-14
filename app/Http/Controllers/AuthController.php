@@ -47,13 +47,18 @@ class AuthController extends Controller
 
     public function storeLogin(Request $request)
     {
-        if (Auth::attempt($request->all('email', 'password'))) {
+        $request->validate([
+            'user_alias' => 'required|string',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt(['user_alias' => $request->user_alias, 'password' => $request->password])) {
             $request->session()->regenerate();
 
             return redirect()->route('home')->with('status', 'Welcome back, '.Auth::user()->user_alias.'!');
         }
 
-        return redirect()->back()->withErrors(['invalid' => 'User or password invalid!']);
+        return redirect()->back()->withErrors(['invalid' => 'User or password invalid!'])->withInput();
     }
 
     public function logout(Request $request)
