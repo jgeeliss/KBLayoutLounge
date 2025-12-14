@@ -48,6 +48,11 @@
     <a href="{{ route('keyboards.edit', $keyboard) }}">
         <button>Edit Layout</button>
     </a>
+    <form action="{{ route('keyboards.destroy', $keyboard) }}" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this keyboard layout? This action cannot be undone and will also delete all ratings and comments.');">
+        @csrf
+        @method('DELETE')
+        <button type="submit" style="background-color: #d33; color: white;">Delete Layout</button>
+    </form>
 </div>
 @endif
 

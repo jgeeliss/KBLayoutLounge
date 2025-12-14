@@ -16,6 +16,7 @@ Route::post('/keyboards', [KeyboardController::class, 'store'])->name('keyboards
 Route::get('/keyboards/{keyboard}', [\App\Http\Controllers\KeyboardController::class, 'show'])->name('keyboards.show');
 Route::get('/keyboards/{keyboard}/edit', [\App\Http\Controllers\KeyboardController::class, 'edit'])->name('keyboards.edit');
 Route::put('/keyboards/{keyboard}', [\App\Http\Controllers\KeyboardController::class, 'update'])->name('keyboards.update');
+Route::delete('/keyboards/{keyboard}', [\App\Http\Controllers\KeyboardController::class, 'destroy'])->name('keyboards.destroy');
 Route::post('/keyboards/{keyboard}/rate', [\App\Http\Controllers\KeyboardController::class, 'rate'])->name('keyboards.rate');
 Route::post('/keyboards/{keyboard}/comment', [\App\Http\Controllers\KeyboardController::class, 'comment'])->name('keyboards.comment');
 

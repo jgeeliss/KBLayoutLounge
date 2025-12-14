@@ -171,10 +171,21 @@ class KeyboardController extends Controller
      */
     public function destroy(Keyboard $keyboard)
     {
+        // Check if user is authenticated
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('status', 'You must be logged in to delete a keyboard layout.');
+        }
+
+        // Check if the user owns this keyboard
+        if ($keyboard->user_id !== auth()->id()) {
+            return redirect()->route('keyboards.show', $keyboard)
+                ->with('status', 'You can only delete your own keyboard layouts.');
+        }
+
         $keyboard->delete();
 
         return redirect()->route('keyboards.index')
-            ->with('success', 'Keyboard deleted successfully.');
+            ->with('status', 'Keyboard layout deleted successfully.');
     }
 
     /**
