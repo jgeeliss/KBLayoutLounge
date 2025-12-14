@@ -24,7 +24,7 @@
 
             @auth
                 <li class="dropdown">
-                    <a href="#" onclick="toggleDropdown(event)">User {{ auth()->user()->user_alias }}</a>
+                    <a href="#" onclick="toggleDropdown(event)"><span class="user-icon">👤</span> {{ auth()->user()->user_alias }}</a>
                     <ul id="dropdown-menu" class="dropdown-menu">
                         <li class="dropdown-item"><a href="{{ route('keyboards.myLayouts') }}">My layouts</a></li>
                         <li class="dropdown-item"><a href="{{ route('keyboards.myComments') }}">My comments</a></li>

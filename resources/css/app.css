@@ -113,6 +113,11 @@
   text-align: left;
 }
 
+.user-icon {
+  font-size: 1.1em;
+  vertical-align: middle;
+}
+
 .rating-label {
   cursor: pointer;
 }
