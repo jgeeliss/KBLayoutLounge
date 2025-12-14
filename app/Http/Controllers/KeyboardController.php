@@ -125,6 +125,11 @@ class KeyboardController extends Controller
 
     public function rate(Request $request, Keyboard $keyboard)
     {
+        // Prevent users from rating their own layouts
+        if ($keyboard->user_id === auth()->id()) {
+            return back()->withErrors(['rating' => 'You cannot rate your own keyboard layout.']);
+        }
+
         $validated = $request->validate([
             'rating' => 'required|integer|min:1|max:5',
         ]);

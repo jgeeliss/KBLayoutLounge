@@ -6,9 +6,10 @@
     $avgRating = $keyboard->averageRating();
     $totalRatings = $keyboard->totalRatings();
     $userRating = auth()->check() ? $keyboard->ratings()->where('user_id', auth()->id())->first() : null;
+    $isOwner = auth()->check() && $keyboard->user_id === auth()->id();
 @endphp
 
-@if(auth()->check())
+@if(auth()->check() && !$isOwner)
 <div style="margin-top: 20px; padding: 15px; background-color: var(--accent-bg); border-radius: 5px;">
     <h3>Rate this layout</h3>
     @if($userRating)
@@ -27,6 +28,8 @@
         </div>
     </form>
 </div>
+@elseif($isOwner)
+<!-- you cannot rate your own layout -->
 @else
 <p style="margin-top: 20px;"><a href="{{ route('login') }}">Login</a> to rate this layout.</p>
 @endif
