@@ -250,6 +250,32 @@ class KeyboardController extends Controller
     }
 
     /**
+     * Update a comment.
+     */
+    public function updateComment(Request $request, \App\Models\Comment $comment)
+    {
+        // Check if user is authenticated
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('status', 'You must be logged in to edit a comment.');
+        }
+
+        // Check if the user owns this comment
+        if ($comment->user_id !== auth()->id()) {
+            return back()->with('status', 'You can only edit your own comments.');
+        }
+
+        $validated = $request->validate([
+            'comment' => 'required|string|max:1000',
+        ]);
+
+        $comment->update([
+            'comment' => $validated['comment'],
+        ]);
+
+        return back()->with('status', 'Comment updated successfully.');
+    }
+
+    /**
      * Delete a comment.
      */
     public function deleteComment(\App\Models\Comment $comment)

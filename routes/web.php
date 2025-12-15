@@ -19,6 +19,7 @@ Route::put('/keyboards/{keyboard}', [\App\Http\Controllers\KeyboardController::c
 Route::delete('/keyboards/{keyboard}', [\App\Http\Controllers\KeyboardController::class, 'destroy'])->name('keyboards.destroy');
 Route::post('/keyboards/{keyboard}/rate', [\App\Http\Controllers\KeyboardController::class, 'rate'])->name('keyboards.rate');
 Route::post('/keyboards/{keyboard}/comment', [\App\Http\Controllers\KeyboardController::class, 'comment'])->name('keyboards.comment');
+Route::put('/comments/{comment}', [\App\Http\Controllers\KeyboardController::class, 'updateComment'])->name('comments.update');
 Route::delete('/comments/{comment}', [\App\Http\Controllers\KeyboardController::class, 'deleteComment'])->name('comments.destroy');
 
 Route::get('/signup', [\App\Http\Controllers\AuthController::class, 'create'])->name('signup');
