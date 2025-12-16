@@ -49,6 +49,18 @@ After cloning this repository, follow these steps to get started:
    php artisan migrate:fresh --seed
    ```
 
+## Admin Access
+
+When seeding the database, an admin user will be created to manage all keyboard layouts and comments:
+
+- **Email**: admin@30keys.com
+- **Username**: admin
+- **Password**: admin
+
+Admin users have special permissions:
+- Delete any keyboard layout (not just their own)
+- Delete any comment (not just their own)
+
 ## Development
 
 ### Running Tests
