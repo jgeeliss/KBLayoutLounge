@@ -209,156 +209,198 @@ class KeyboardLayoutSeeder extends Seeder
         // Create comments on keyboards
 
         // Dutchman comments
+        $date1 = now()->subDays(60);
         Comment::create([
             'keyboard_id' => $dutchmanKeyboard->id,
             'user_id' => $dutchmanUser->id,
             'comment' => 'This layout is optimized for Dutch and English. The home row contains the most frequent letters in both languages!',
-            'created_at' => now()->subDays(60),
+            'created_at' => $date1,
+            'updated_at' => $date1,
         ]);
 
+        $date2 = now()->subDays(45);
         Comment::create([
             'keyboard_id' => $dutchmanKeyboard->id,
             'user_id' => $raters[0]->id,
             'comment' => 'Really loving the flow of this layout. My fingers barely move from the home row.',
-            'created_at' => now()->subDays(45),
+            'created_at' => $date2,
+            'updated_at' => $date2,
         ]);
 
+        $date3 = now()->subDays(30);
         Comment::create([
             'keyboard_id' => $dutchmanKeyboard->id,
             'user_id' => $raters[2]->id,
             'comment' => 'As a Dutch speaker, this feels natural. The vowel placement is genius!',
-            'created_at' => now()->subDays(30),
+            'created_at' => $date3,
+            'updated_at' => $date3,
         ]);
 
         // QWERTY comments
+        $date4 = now()->subDays(80);
         Comment::create([
             'keyboard_id' => $qwertyKeyboard->id,
             'user_id' => $qwertyUser->id,
             'comment' => 'The original and still the standard. Designed to prevent typewriter jams, not for efficiency.',
-            'created_at' => now()->subDays(80),
+            'created_at' => $date4,
+            'updated_at' => $date4,
         ]);
 
+        $date5 = now()->subDays(50);
         Comment::create([
             'keyboard_id' => $qwertyKeyboard->id,
             'user_id' => $raters[1]->id,
             'comment' => 'It\'s what everyone knows, but honestly there are better options out there.',
-            'created_at' => now()->subDays(50),
+            'created_at' => $date5,
+            'updated_at' => $date5,
         ]);
 
+        $date6 = now()->subDays(35);
         Comment::create([
             'keyboard_id' => $qwertyKeyboard->id,
             'user_id' => $raters[3]->id,
             'comment' => 'Not the most efficient, but muscle memory is hard to break. Switching would take months.',
-            'created_at' => now()->subDays(35),
+            'created_at' => $date6,
+            'updated_at' => $date6,
         ]);
 
+        $date7 = now()->subDays(20);
         Comment::create([
             'keyboard_id' => $qwertyKeyboard->id,
             'user_id' => $raters[5]->id,
             'comment' => 'Works fine for casual typing. Don\'t see a reason to change after 20 years.',
-            'created_at' => now()->subDays(20),
+            'created_at' => $date7,
+            'updated_at' => $date7,
         ]);
 
         // Dvorak comments
+        $date8 = now()->subDays(90);
         Comment::create([
             'keyboard_id' => $dvorakKeyboard->id,
             'user_id' => $dvorakUser->id,
             'comment' => 'Scientifically designed to minimize finger movement and maximize typing speed. The vowels on the left home row are key.',
-            'created_at' => now()->subDays(90),
+            'created_at' => $date8,
+            'updated_at' => $date8,
         ]);
 
+        $date9 = now()->subDays(55);
         Comment::create([
             'keyboard_id' => $dvorakKeyboard->id,
             'user_id' => $raters[0]->id,
             'comment' => 'Took me 3 months to learn but now I\'m typing 20 WPM faster than on QWERTY!',
-            'created_at' => now()->subDays(55),
+            'created_at' => $date9,
+            'updated_at' => $date9,
         ]);
 
+        $date10 = now()->subDays(15);
         Comment::create([
             'keyboard_id' => $dvorakKeyboard->id,
             'user_id' => $raters[4]->id,
             'comment' => 'The learning curve is steep. Been at it for 2 weeks and still struggling with common words.',
-            'created_at' => now()->subDays(15),
+            'created_at' => $date10,
+            'updated_at' => $date10,
         ]);
 
+        $date11 = now()->subDays(42);
         Comment::create([
             'keyboard_id' => $dvorakKeyboard->id,
             'user_id' => $raters[6]->id,
             'comment' => 'Interesting concept but the punctuation placement feels awkward for programming.',
-            'created_at' => now()->subDays(42),
+            'created_at' => $date11,
+            'updated_at' => $date11,
         ]);
 
         // Colemak comments
+        $date12 = now()->subDays(75);
         Comment::create([
             'keyboard_id' => $colemakKeyboard->id,
             'user_id' => $colemakUser->id,
             'comment' => 'A modern approach that keeps QWERTY shortcuts intact. Best of both worlds!',
-            'created_at' => now()->subDays(75),
+            'created_at' => $date12,
+            'updated_at' => $date12,
         ]);
 
+        $date13 = now()->subDays(50);
         Comment::create([
             'keyboard_id' => $colemakKeyboard->id,
             'user_id' => $raters[1]->id,
             'comment' => 'Perfect for programmers. Much easier to learn than Dvorak since many keys stay in place.',
-            'created_at' => now()->subDays(50),
+            'created_at' => $date13,
+            'updated_at' => $date13,
         ]);
 
+        $date14 = now()->subDays(40);
         Comment::create([
             'keyboard_id' => $colemakKeyboard->id,
             'user_id' => $raters[2]->id,
             'comment' => 'The ZXCV positions staying the same makes copy/paste so much easier during the transition.',
-            'created_at' => now()->subDays(40),
+            'created_at' => $date14,
+            'updated_at' => $date14,
         ]);
 
+        $date15 = now()->subDays(28);
         Comment::create([
             'keyboard_id' => $colemakKeyboard->id,
             'user_id' => $raters[7]->id,
             'comment' => 'Switched from QWERTY last month. Already feeling more comfortable and less finger strain.',
-            'created_at' => now()->subDays(28),
+            'created_at' => $date15,
+            'updated_at' => $date15,
         ]);
 
         // Workman comments
+        $date16 = now()->subDays(85);
         Comment::create([
             'keyboard_id' => $workmanKeyboard->id,
             'user_id' => $workmanUser->id,
             'comment' => 'Designed with biomechanics in mind. Reduces lateral finger movement compared to other layouts.',
-            'created_at' => now()->subDays(85),
+            'created_at' => $date16,
+            'updated_at' => $date16,
         ]);
 
+        $date17 = now()->subDays(48);
         Comment::create([
             'keyboard_id' => $workmanKeyboard->id,
             'user_id' => $raters[3]->id,
             'comment' => 'The hand alternation is really smooth. My RSI symptoms have improved significantly.',
-            'created_at' => now()->subDays(48),
+            'created_at' => $date17,
+            'updated_at' => $date17,
         ]);
 
+        $date18 = now()->subDays(25);
         Comment::create([
             'keyboard_id' => $workmanKeyboard->id,
             'user_id' => $raters[8]->id,
             'comment' => 'Good layout but not as popular as Colemak. Harder to find resources and support.',
-            'created_at' => now()->subDays(25),
+            'created_at' => $date18,
+            'updated_at' => $date18,
         ]);
 
         // Norman comments
+        $date19 = now()->subDays(70);
         Comment::create([
             'keyboard_id' => $normanKeyboard->id,
             'user_id' => $normanUser->id,
             'comment' => 'The easiest alternative layout to learn. Only changes 14 keys from QWERTY!',
-            'created_at' => now()->subDays(70),
+            'created_at' => $date19,
+            'updated_at' => $date19,
         ]);
 
+        $date20 = now()->subDays(38);
         Comment::create([
             'keyboard_id' => $normanKeyboard->id,
             'user_id' => $raters[5]->id,
             'comment' => 'Nice middle ground. Not as efficient as Colemak but way easier to transition to.',
-            'created_at' => now()->subDays(38),
+            'created_at' => $date20,
+            'updated_at' => $date20,
         ]);
 
+        $date21 = now()->subDays(7);
         Comment::create([
             'keyboard_id' => $normanKeyboard->id,
             'user_id' => $raters[9]->id,
             'comment' => 'Been using it for a week and already at 70% of my QWERTY speed. Impressive!',
-            'created_at' => now()->subDays(7),
+            'created_at' => $date21,
+            'updated_at' => $date21,
         ]);
     }
 }
