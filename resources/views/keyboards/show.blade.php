@@ -43,11 +43,15 @@
     <span class="text-medium text-light-gray">&nbsp;&nbsp;&nbsp;{{ $keyboard->created_at->diffForHumans() }}</span>
 </p>
 
-@if($isOwner)
+@can('update', $keyboard)
 <div>
     <a href="{{ route('keyboards.edit', $keyboard) }}">
         <button>Edit Layout</button>
     </a>
+</div>
+@endcan
+@can('delete', $keyboard)
+<div>
     <!-- source: https://laracasts.com/discuss/channels/laravel/laravel-confirm-delete-in-an-alert-in-my-view -->
     <form action="{{ route('keyboards.destroy', $keyboard) }}" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this keyboard layout? This action cannot be undone and will also delete all ratings and comments.');">
         @csrf
@@ -55,7 +59,7 @@
         <button type="submit" class="btn-delete">Delete Layout</button>
     </form>
 </div>
-@endif
+@endcan
 
 @if($keyboard->description)
 <p>{{ $keyboard->description }}</p>
@@ -91,16 +95,18 @@
                     @endif
                 </div>
                 @auth
-                    @if($comment->user_id === auth()->id())
-                        <div class="comment-actions">
-                            <button type="button" class="btn-edit-small" onclick="toggleEditComment({{ $comment->id }})">Edit</button>
-                            <form action="{{ route('comments.destroy', $comment) }}" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this comment?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn-delete-small">Delete</button>
-                            </form>
-                        </div>
-                    @endif
+                    <div class="comment-actions">
+                        @can('update', $comment)
+                        <button type="button" class="btn-edit-small" onclick="toggleEditComment({{ $comment->id }})">Edit</button>
+                        @endcan
+                        @can('delete', $comment)
+                        <form action="{{ route('comments.destroy', $comment) }}" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-delete-small">Delete</button>
+                        </form>
+                        @endcan
+                    </div>
                 @endauth
             </div>
             <div class="comment-display-{{ $comment->id }}">
