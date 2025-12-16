@@ -24,5 +24,7 @@ class DatabaseSeeder extends Seeder
 
         // Seed some famous keyboard layouts with their creators
         $this->call(KeyboardLayoutSeeder::class);
+        // Seed an admin user
+        $this->call(AdminUserSeeder::class);
     }
 }
