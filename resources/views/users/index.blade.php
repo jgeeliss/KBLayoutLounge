@@ -2,13 +2,10 @@
 
 @section('content')
     <div class="container">
-        <h1>User Management</h1>
-
-        @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>User Management</h1>
+            <a href="{{ route('users.create') }}" class="btn btn-primary">Create New User</a>
+        </div>
 
         <table class="table">
             <thead>
