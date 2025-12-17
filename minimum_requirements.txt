@@ -1,0 +1,79 @@
+Functionele minimum requirements
+    Login systeem
+        Bezoekers kunnen inloggen OK
+        Alle bezoekers kunnen een nieuwe account aanmaken OK
+        Een useraccount is of een gewone gebruiker, of een admin OK
+        Enkel admins kunnen andere gebruikers verheffen tot admin en deze rechten afnemen OK
+        Enkel admins kunnen een nieuwe gebruiker manueel aanmaken (en deze al dan niet admin maken) TODO
+    Profielpagina
+        Elke gebruiker heeft zijn eigen publieke profielpagina die toegankelijk is voor iedereen, ook voor niet ingelogde gebruikers TODO
+        Een ingelogde gebruiker kan diens eigen data aanpassen TODO
+        Een profiel bevat minstens de volgende data (maar de velden zelf zijn optioneel): TODO
+            Username (dus de gebruiker kan zelf kiezen welke naam er op het profiel staat)
+            Verjaardag
+            Profielfoto (dat op de webserver zal bewaard worden)
+            Kleine "over mij" tekst
+    Laatste nieuwtjes
+        Admins kunnen nieuwe nieuwsitems toevoegen, wijzigen en verwijderen TODO
+        Elke bezoeker kan een lijst van alle nieuwtjes en een detail per nieuwtje zien TODO 
+        De nieuwsitems hebben minstens: TODO
+            Titel
+            Afbeelding (opgeslagen op de server)
+            Content
+            Publicatiedatum
+    FAQ pagina
+        De FAQ-pagina bevat een lijst van vragen en antwoorden, gegroepeerd per categorie TODO
+        Admins kunnen categorieën en vraag/antwoorden toevoegen, wijzigen en verwijderen TODO
+        Elke bezoeker kan de FAQ zien TODO
+    Contact pagina
+        Elke bezoeker kan een contactformulier invullen TODO
+        Bij het versturen van dit contactformulier krijgt de admin een email met de inhoud van het formulier TODO 
+
+
+Technische requirements
+
+Naast de functionele requirements zijn er ook enkele technische standaarden die je moet volgen:
+
+    Views
+        Gebruik minstens twee layouts OK
+        Gebruik een component waar logisch TODO
+        Gebruik de technieken die aan bod gekomen zijn in de cursus en de oefeningen
+            Control structures OK
+            XSS protection TODO
+            CSRF protection OK
+            Client-side validation OK
+    Routes
+        Alle routes gebruiken controller methods OK
+        Alle routes gebruiken de nodige middleware OK
+        Indien mogelijk: groepeer je routes OK
+    Controller
+        Gebruik controllers om je logica op te splitsen OK
+        Denk terug aan resource controllers voor CRUD operaties OK
+    Models
+        Gebruik Eloquent models per entiteit OK
+        Leg de nodige relaties
+            Minstens één one-to-many OK (user-to-layout)
+            Minstens één many-to-many OK (user-ratings-layouts)
+    Database
+        Ik zal "php artisan migrate:fresh --seed" uitvoeren op elk project en mijn eigen .env-file gebruiken om met de database te connecten
+        Zorg dat je database werkt OK
+        Zorg dat je database alle nodige basisdata bevat OK
+    Authentication
+        Standaard functionaliteiten
+            Log in/out OK
+            'Remember me' TODO
+            Registreer OK
+            Mogelijkheid om wachtwoord te resetten bij vergeten wachtwoord TODO
+        Voeg één default admin toe OK
+            Username: admin
+            Email: admin@ehb.be
+            Password: Password!321
+    Layout OK
+        Dit is geen design vak dus steek niet teveel tijd in het mooi maken van je project, maar zorg voor een duidelijke en professionele layout
+
+
+Zorg voor een readme.md file. Deze file bevat minstens:
+
+    De stappen dit iemand moet uitvoeren om je project te laten werken OK
+    Je bronvermeldingen TODO
+    Enige andere belangrijke informatie die je wilt meedelen over je project TODO
