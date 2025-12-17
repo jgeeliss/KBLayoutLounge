@@ -34,6 +34,19 @@ class KeyboardLayoutSeeder extends Seeder
             'updated_at' => now()->subDays(rand(1, 120)),
         ]);
 
+        $stonerKeyboard = Keyboard::create([
+            'name' => 'Stoner',
+            'description' => 'My first try at designing a layout for Dutch and English.',
+            'layout' => [
+                ['B', 'G', 'L', 'M', 'X', '\'', 'K', 'U', 'O', 'Y'],
+                ['S', 'T', 'N', 'R', 'W', 'P', 'D', 'E', 'A', 'I'],
+                ['V', 'C', 'Z', 'J', 'Q', 'F', 'H', '.', ',', '/'],
+            ],
+            'user_id' => $dutchmanUser->id,
+            'created_at' => now()->subDays(rand(120, 240)),
+            'updated_at' => now()->subDays(rand(120, 240)),
+        ]);
+
         // QWERTY Layout
         $qwertyUser = User::create([
             'user_alias' => 'christopher_sholes',
@@ -161,6 +174,15 @@ class KeyboardLayoutSeeder extends Seeder
             ]);
         }
 
+        // Stoner - well-liked by all, not as much as Dutchman
+        foreach (array_rand($raters, 7) as $randomRater) {
+            Rating::create([
+                'keyboard_id' => $stonerKeyboard->id,
+                'user_id' => $raters[$randomRater]->id,
+                'rating' => rand(3, 4),
+            ]);
+        }
+
         // QWERTY - average ratings
         foreach (array_rand($raters, 7) as $randomRater) {
             Rating::create([
@@ -232,6 +254,34 @@ class KeyboardLayoutSeeder extends Seeder
             'keyboard_id' => $dutchmanKeyboard->id,
             'user_id' => $raters[2]->id,
             'comment' => 'As a Dutch speaker, this feels natural. The vowel placement is genius!',
+            'created_at' => $date3,
+            'updated_at' => $date3,
+        ]);
+
+        // Stoner comments
+        $date1 = now()->subDays(60);
+        Comment::create([
+            'keyboard_id' => $stonerKeyboard->id,
+            'user_id' => $dutchmanUser->id,
+            'comment' => 'My first try at creating a layout optimized for Dutch and English, be gentle!',
+            'created_at' => $date1,
+            'updated_at' => $date1,
+        ]);
+
+        $date2 = now()->subDays(45);
+        Comment::create([
+            'keyboard_id' => $stonerKeyboard->id,
+            'user_id' => $raters[0]->id,
+            'comment' => 'Weird layout but has potential. Needs some tweaks for better ergonomics.',
+            'created_at' => $date2,
+            'updated_at' => $date2,
+        ]);
+
+        $date3 = now()->subDays(30);
+        Comment::create([
+            'keyboard_id' => $stonerKeyboard->id,
+            'user_id' => $raters[2]->id,
+            'comment' => 'Not bad for a first attempt! I can see the thought process behind the key placements.',
             'created_at' => $date3,
             'updated_at' => $date3,
         ]);
