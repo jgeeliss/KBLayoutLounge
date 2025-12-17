@@ -29,6 +29,9 @@
                         <li class="dropdown-item"><a href="{{ route('keyboards.myLayouts') }}">My layouts</a></li>
                         <li class="dropdown-item"><a href="{{ route('comments.index') }}">My comments</a></li>
                         <li class="dropdown-item"><a href="{{ route('ratings.index') }}">My ratings</a></li>
+                        @if (auth()->user()->isAdmin())
+                            <li class="dropdown-item"><a>Manage Users</a></li>
+                        @endif
                         <li class="dropdown-item"><a href="{{ route('logout') }}">Logout</a></li>
                     </ul>
                 </li>
