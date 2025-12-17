@@ -13,6 +13,11 @@
                 @else
                     <p><strong>Birthday:</strong> No idea</p>
                 @endif
+
+                @if($user->about_me)
+                    <p><strong>About me:</strong></p>
+                    <p>{{ $user->about_me }}</p>
+                @endif
             </div>
             @if(auth()->check() && auth()->id() === $user->id)
                 <a href="{{ route('users.edit') }}" class="btn btn-secondary">Edit My Profile</a>

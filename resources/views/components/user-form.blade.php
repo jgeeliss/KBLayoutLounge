@@ -39,6 +39,11 @@
     </div>
 
     <div class="form-element">
+        <label for="about_me">About me (optional)</label>
+        <textarea id="about_me" name="about_me" rows="4" placeholder="Tell us about yourself...">{{ old('about_me', $user->about_me ?? '') }}</textarea>
+    </div>
+
+    <div class="form-element">
         <label for="password">Password{{ $user ? ' (leave blank to keep current)' : '' }}</label>
         <input type="password" id="password" name="password" {{ $showAdminCheckbox || !$user ? 'required' : '' }}>
     </div>

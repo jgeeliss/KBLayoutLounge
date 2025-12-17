@@ -63,6 +63,7 @@ class UserController extends Controller
             'user_alias' => 'required|string|min:3|max:15|unique:users,user_alias',
             'password' => 'required|confirmed|min:6',
             'birthday' => 'nullable|date|before:today',
+            'about_me' => 'nullable|string|max:500',
             'is_admin' => 'boolean',
         ]);
 
@@ -71,6 +72,7 @@ class UserController extends Controller
             'user_alias' => $request->user_alias,
             'password' => Hash::make($request->password),
             'birthday' => $request->birthday,
+            'about_me' => $request->about_me,
             'is_admin' => $request->has('is_admin'),
         ]);
 
@@ -137,11 +139,13 @@ class UserController extends Controller
             'user_alias' => 'required|string|min:3|max:15|unique:users,user_alias,' . $user->id,
             'password' => 'nullable|confirmed|min:6',
             'birthday' => 'nullable|date|before:today',
+            'about_me' => 'nullable|string|max:500',
         ]);
 
         $user->email = $request->email;
         $user->user_alias = $request->user_alias;
         $user->birthday = $request->birthday;
+        $user->about_me = $request->about_me;
 
         // Only update password if provided
         if ($request->filled('password')) {
