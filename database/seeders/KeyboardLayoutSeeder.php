@@ -8,11 +8,14 @@ use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 
 class KeyboardLayoutSeeder extends Seeder
 {
     public function run(): void
     {
+        // Copy profile pictures from seeders to public storage
+        $this->copyProfilePicturesFromSeederToPublicStorage();
         // Dutchman Layout
         $dutchmanUser = User::create([
             'user_alias' => 'jesse_geelissen',
@@ -20,6 +23,7 @@ class KeyboardLayoutSeeder extends Seeder
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
             'about_me' => 'Keyboard layout enthusiast from the Netherlands. Creator of the Dutchman layout, optimized for Dutch and English typing. Always experimenting with new designs!',
+            'profile_picture' => 'profile_pictures/jesse_geelissen.jpg',
         ]);
 
         $dutchmanKeyboard = Keyboard::create([
@@ -53,6 +57,7 @@ class KeyboardLayoutSeeder extends Seeder
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
             'about_me' => 'Inventor and typewriter pioneer. Created the QWERTY layout in the 1870s to prevent mechanical jamming. Little did I know it would become the global standard!',
+            'profile_picture' => 'profile_pictures/christopher_sholes.jpg',
         ]);
 
         $qwertyKeyboard = Keyboard::create([
@@ -74,6 +79,7 @@ class KeyboardLayoutSeeder extends Seeder
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
             'about_me' => 'Educational psychologist and professor. Designed the Dvorak Simplified Keyboard in 1936 to maximize typing efficiency. Passionate about ergonomics and reducing finger strain.',
+            'profile_picture' => 'profile_pictures/august_dvorak.jpg',
         ]);
 
         $dvorakKeyboard = Keyboard::create([
@@ -95,6 +101,7 @@ class KeyboardLayoutSeeder extends Seeder
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
             'about_me' => 'Software developer and layout designer. Created Colemak in 2006 as a modern alternative to QWERTY, balancing efficiency with ease of learning. Open source advocate.',
+            'profile_picture' => 'profile_pictures/shai_coleman.jpg',
         ]);
 
         $colemakKeyboard = Keyboard::create([
@@ -116,6 +123,7 @@ class KeyboardLayoutSeeder extends Seeder
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
             'about_me' => 'Engineer and ergonomics enthusiast. Developed the Workman layout between 2010-2011 to reduce lateral finger movement. Focused on hand alternation and comfort for long typing sessions.',
+            'profile_picture' => 'profile_pictures/oj_bucao.jpg',
         ]);
 
         $workmanKeyboard = Keyboard::create([
@@ -137,6 +145,7 @@ class KeyboardLayoutSeeder extends Seeder
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
             'about_me' => 'Software engineer and keyboard layout designer. Created the Norman layout in 2010 to provide a balanced alternative between QWERTY familiarity and typing efficiency. Advocate for ergonomic typing solutions.',
+            'profile_picture' => 'profile_pictures/david_norman.png',
         ]);
 
         $normanKeyboard = Keyboard::create([
@@ -497,5 +506,27 @@ class KeyboardLayoutSeeder extends Seeder
             'created_at' => $date26,
             'updated_at' => $date26,
         ]);
+    }
+
+    /**
+     * Copy profile pictures from seeders directory to public storage
+     */
+    private function copyProfilePicturesFromSeederToPublicStorage(): void
+    {
+        $sourceDir = database_path('seeders/profile_pictures');
+        $destDir = public_path('storage/profile_pictures');
+
+        // Create destination directory if it doesn't exist
+        if (!File::exists($destDir)) {
+            File::makeDirectory($destDir, 0755, true);
+        }
+
+        // Copy all images from source to destination
+        if (File::exists($sourceDir)) {
+            $files = File::files($sourceDir);
+            foreach ($files as $file) {
+                File::copy($file->getPathname(), $destDir . '/' . $file->getFilename());
+            }
+        }
     }
 }
