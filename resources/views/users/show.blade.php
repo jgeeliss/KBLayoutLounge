@@ -14,6 +14,9 @@
                     <p><strong>Birthday:</strong> No idea</p>
                 @endif
             </div>
+            @if(auth()->check() && auth()->id() === $user->id)
+                <a href="{{ route('users.edit') }}" class="btn btn-secondary">Edit My Profile</a>
+            @endif
         </div>
     </div>
 @endsection
