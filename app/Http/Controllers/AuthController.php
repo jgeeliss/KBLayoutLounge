@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+/**
+* handles the signup process when a brand new user creates their account for the first time.
+*/
 class AuthController extends Controller
 {
     public function create()
@@ -21,6 +24,8 @@ class AuthController extends Controller
             'user_alias' => 'required|string|min:3|max:15',
             'password' => 'required|confirmed|min:6',
             'birthday' => 'nullable|date|before:today',
+            'about_me' => 'nullable|string|max:500',
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         if (User::where('email', $request->get('email'))->first()) {
@@ -36,6 +41,16 @@ class AuthController extends Controller
         $user->user_alias = $request->get('user_alias');
         $user->password = Hash::make($request->get('password'));
         $user->birthday = $request->get('birthday');
+        $user->about_me = $request->get('about_me');
+
+        // Handle profile picture upload
+        if ($request->hasFile('profile_picture')) {
+            $file = $request->file('profile_picture');
+            $filename = time() . '_' . $user->user_alias . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('storage/profile_pictures'), $filename);
+            $user->profile_picture = 'profile_pictures/' . $filename;
+        }
+
         $user->save();
         Auth::login($user);
 

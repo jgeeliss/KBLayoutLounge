@@ -19,7 +19,8 @@
     </ul>
 @endif
 
-<form action="{{ $action }}" method="{{ $method === 'GET' ? 'GET' : 'POST' }}" class="form">
+<!-- note: When you have an <input type="file"> element in your form, you must use enctype="multipart/form-data". Without it, file uploads simply won't work. -->
+<form action="{{ $action }}" method="{{ $method === 'GET' ? 'GET' : 'POST' }}" class="form" enctype="multipart/form-data">
     @csrf
     {{ $slot }}
 
@@ -41,6 +42,17 @@
     <div class="form-element">
         <label for="about_me">About me (optional)</label>
         <textarea id="about_me" name="about_me" rows="4" placeholder="Tell us about yourself...">{{ old('about_me', $user->about_me ?? '') }}</textarea>
+    </div>
+
+    <div class="form-element">
+        <label for="profile_picture">Profile picture (optional)</label>
+        @if($user && $user->profile_picture)
+            <div>
+                <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile picture">
+            </div>
+        @endif
+        <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+        <small class="form-text text-muted">Max size: 2MB. Accepted formats: JPEG, PNG, JPG, GIF</small>
     </div>
 
     <div class="form-element">

@@ -6,6 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+/**
+*  handles two different scenarios: admin creating new users and regular users updating their own profile.
+*/
 class UserController extends Controller
 {
     /**
@@ -64,8 +67,17 @@ class UserController extends Controller
             'password' => 'required|confirmed|min:6',
             'birthday' => 'nullable|date|before:today',
             'about_me' => 'nullable|string|max:500',
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_admin' => 'boolean',
         ]);
+
+        $profilePicturePath = null;
+        if ($request->hasFile('profile_picture')) {
+            $file = $request->file('profile_picture');
+            $filename = time() . '_' . $request->user_alias . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('storage/profile_pictures'), $filename);
+            $profilePicturePath = 'profile_pictures/' . $filename;
+        }
 
         $user = User::create([
             'email' => $request->email,
@@ -73,6 +85,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'birthday' => $request->birthday,
             'about_me' => $request->about_me,
+            'profile_picture' => $profilePicturePath,
             'is_admin' => $request->has('is_admin'),
         ]);
 
@@ -140,12 +153,29 @@ class UserController extends Controller
             'password' => 'nullable|confirmed|min:6',
             'birthday' => 'nullable|date|before:today',
             'about_me' => 'nullable|string|max:500',
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $user->email = $request->email;
         $user->user_alias = $request->user_alias;
         $user->birthday = $request->birthday;
         $user->about_me = $request->about_me;
+
+        // Handle profile picture upload
+        if ($request->hasFile('profile_picture')) {
+            // Delete old profile picture if exists
+            if ($user->profile_picture) {
+                $oldPath = public_path('storage/' . $user->profile_picture);
+                if (file_exists($oldPath)) {
+                    unlink($oldPath);
+                }
+            }
+
+            $file = $request->file('profile_picture');
+            $filename = time() . '_' . $user->user_alias . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('storage/profile_pictures'), $filename);
+            $user->profile_picture = 'profile_pictures/' . $filename;
+        }
 
         // Only update password if provided
         if ($request->filled('password')) {
