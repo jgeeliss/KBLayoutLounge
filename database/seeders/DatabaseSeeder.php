@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'user_alias' => 'test_user',
             'email' => 'test@example.com',
+            'about_me' => 'Just a test user exploring different keyboard layouts and sharing my typing journey!',
         ]);
 
         // Seed some famous keyboard layouts with their creators

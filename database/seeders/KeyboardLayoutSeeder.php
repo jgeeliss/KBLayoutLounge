@@ -19,6 +19,7 @@ class KeyboardLayoutSeeder extends Seeder
             'email' => 'jgeeliss@gmail.com',
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
+            'about_me' => 'Keyboard layout enthusiast from the Netherlands. Creator of the Dutchman layout, optimized for Dutch and English typing. Always experimenting with new designs!',
         ]);
 
         $dutchmanKeyboard = Keyboard::create([
@@ -51,6 +52,7 @@ class KeyboardLayoutSeeder extends Seeder
             'email' => 'christopher.sholes@typewriter.com',
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
+            'about_me' => 'Inventor and typewriter pioneer. Created the QWERTY layout in the 1870s to prevent mechanical jamming. Little did I know it would become the global standard!',
         ]);
 
         $qwertyKeyboard = Keyboard::create([
@@ -71,6 +73,7 @@ class KeyboardLayoutSeeder extends Seeder
             'email' => 'august.dvorak@efficiency.com',
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
+            'about_me' => 'Educational psychologist and professor. Designed the Dvorak Simplified Keyboard in 1936 to maximize typing efficiency. Passionate about ergonomics and reducing finger strain.',
         ]);
 
         $dvorakKeyboard = Keyboard::create([
@@ -91,6 +94,7 @@ class KeyboardLayoutSeeder extends Seeder
             'email' => 'shai.coleman@colemak.com',
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
+            'about_me' => 'Software developer and layout designer. Created Colemak in 2006 as a modern alternative to QWERTY, balancing efficiency with ease of learning. Open source advocate.',
         ]);
 
         $colemakKeyboard = Keyboard::create([
@@ -111,6 +115,7 @@ class KeyboardLayoutSeeder extends Seeder
             'email' => 'oj.bucao@workman.com',
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
+            'about_me' => 'Engineer and ergonomics enthusiast. Developed the Workman layout between 2010-2011 to reduce lateral finger movement. Focused on hand alternation and comfort for long typing sessions.',
         ]);
 
         $workmanKeyboard = Keyboard::create([
@@ -131,6 +136,7 @@ class KeyboardLayoutSeeder extends Seeder
             'email' => 'david.norman@norman.com',
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
+            'about_me' => 'Software engineer and keyboard layout designer. Created the Norman layout in 2010 to provide a balanced alternative between QWERTY familiarity and typing efficiency. Advocate for ergonomic typing solutions.',
         ]);
 
         $normanKeyboard = Keyboard::create([

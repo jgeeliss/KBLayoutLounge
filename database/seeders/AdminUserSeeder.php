@@ -19,6 +19,7 @@ class AdminUserSeeder extends Seeder
                 'user_alias' => 'admin',
                 'password' => Hash::make('Password!321'),
                 'is_admin' => true,
+                'about_me' => 'Administrator of this keyboard layout community. Feel free to reach out if you have any questions!',
             ]
         );
     }
