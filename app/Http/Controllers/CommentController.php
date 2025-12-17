@@ -8,6 +8,24 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+
+    /**
+     * Display the authenticated user's comments.
+     */
+    public function index()
+    {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('status', 'You must be logged in to view your comments.');
+        }
+
+        $comments = Comment::where('user_id', auth()->id())
+            ->with('keyboard')
+            ->latest()
+            ->get();
+
+        return view('keyboards.my-comments', compact('comments'));
+    }
+
     /**
      * Store a newly created comment.
      */

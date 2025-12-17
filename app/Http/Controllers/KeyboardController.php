@@ -32,40 +32,6 @@ class KeyboardController extends Controller
     }
 
     /**
-     * Display the authenticated user's comments.
-     */
-    public function myComments()
-    {
-        if (!auth()->check()) {
-            return redirect()->route('login')->with('status', 'You must be logged in to view your comments.');
-        }
-
-        $comments = \App\Models\Comment::where('user_id', auth()->id())
-            ->with('keyboard')
-            ->latest()
-            ->get();
-
-        return view('keyboards.my-comments', compact('comments'));
-    }
-
-    /**
-     * Display the authenticated user's ratings.
-     */
-    public function myRatings()
-    {
-        if (!auth()->check()) {
-            return redirect()->route('login')->with('status', 'You must be logged in to view your ratings.');
-        }
-
-        $ratings = \App\Models\Rating::where('user_id', auth()->id())
-            ->with('keyboard.user')
-            ->latest()
-            ->get();
-
-        return view('keyboards.my-ratings', compact('ratings'));
-    }
-
-    /**
      * Show the form for creating a new keyboard.
      */
     public function create()

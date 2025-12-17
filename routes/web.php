@@ -13,8 +13,6 @@ Route::view('/about', 'about')->name('about');
 // Keyboard routes
 Route::get('/keyboards', [KeyboardController::class, 'index'])->name('keyboards.index');
 Route::get('/keyboards/my-layouts', [KeyboardController::class, 'myLayouts'])->name('keyboards.myLayouts');
-Route::get('/keyboards/my-comments', [KeyboardController::class, 'myComments'])->name('keyboards.myComments');
-Route::get('/keyboards/my-ratings', [KeyboardController::class, 'myRatings'])->name('keyboards.myRatings');
 Route::get('/keyboard/create', [KeyboardController::class, 'create'])->name('keyboards.create');
 Route::post('/keyboards', [KeyboardController::class, 'store'])->name('keyboards.store');
 Route::get('/keyboards/{keyboard}', [KeyboardController::class, 'show'])->name('keyboards.show');
@@ -23,9 +21,11 @@ Route::put('/keyboards/{keyboard}', [KeyboardController::class, 'update'])->name
 Route::delete('/keyboards/{keyboard}', [KeyboardController::class, 'destroy'])->name('keyboards.destroy');
 
 // Rating routes
+Route::get('/ratings/my-ratings', [RatingController::class, 'index'])->name('ratings.index');
 Route::post('/keyboards/{keyboard}/rate', [RatingController::class, 'store'])->name('keyboards.rate');
 
 // Comment routes
+Route::get('/comments/my-comments', [CommentController::class, 'index'])->name('comments.index');
 Route::post('/keyboards/{keyboard}/comment', [CommentController::class, 'store'])->name('keyboards.comment');
 Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');

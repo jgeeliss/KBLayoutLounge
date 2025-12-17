@@ -3,10 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Keyboard;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 
 class RatingController extends Controller
 {
+    /**
+     * Display the authenticated user's ratings.
+     */
+    public function index()
+    {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('status', 'You must be logged in to view your ratings.');
+        }
+
+        $ratings = Rating::where('user_id', auth()->id())
+            ->with('keyboard.user')
+            ->latest()
+            ->get();
+
+        return view('keyboards.my-ratings', compact('ratings'));
+    }
+
     /**
      * Store or update a rating for a keyboard.
      */
@@ -22,7 +40,7 @@ class RatingController extends Controller
         ]);
 
         // note: this is a special eloquent method that will either update an existing or create a new one
-        \App\Models\Rating::updateOrCreate(
+        Rating::updateOrCreate(
             // first array is the conditions to find existing rating
             [
                 'user_id' => auth()->id(),
