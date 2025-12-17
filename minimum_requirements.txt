@@ -4,7 +4,7 @@ Functionele minimum requirements
         Alle bezoekers kunnen een nieuwe account aanmaken OK
         Een useraccount is of een gewone gebruiker, of een admin OK
         Enkel admins kunnen andere gebruikers verheffen tot admin en deze rechten afnemen OK
-        Enkel admins kunnen een nieuwe gebruiker manueel aanmaken (en deze al dan niet admin maken) TODO
+        Enkel admins kunnen een nieuwe gebruiker manueel aanmaken (en deze al dan niet admin maken) OK
     Profielpagina
         Elke gebruiker heeft zijn eigen publieke profielpagina die toegankelijk is voor iedereen, ook voor niet ingelogde gebruikers TODO
         Een ingelogde gebruiker kan diens eigen data aanpassen TODO
@@ -36,7 +36,7 @@ Naast de functionele requirements zijn er ook enkele technische standaarden die 
 
     Views
         Gebruik minstens twee layouts OK
-        Gebruik een component waar logisch TODO
+        Gebruik een component waar logisch OK
         Gebruik de technieken die aan bod gekomen zijn in de cursus en de oefeningen
             Control structures OK
             XSS protection TODO
