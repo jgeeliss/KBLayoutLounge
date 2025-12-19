@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>
-        Welcome to the Keyboard Layout Lounge Home Page!
+        Welcome to 30 Keys!
     </h1>
 
     @if($topKeyboards->isNotEmpty())

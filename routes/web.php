@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KeyboardController;
+use App\Http\Controllers\NewsitemController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -10,6 +11,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 Route::view('/about', 'about')->name('about');
+
+// News routes
+Route::get('/news', [NewsitemController::class, 'index'])->name('newsitems.index');
+Route::get('/news/{newsitem}', [NewsitemController::class, 'show'])->name('newsitems.show');
 
 // User routes
 Route::get('/users', [UserController::class, 'index'])->name('users.index');

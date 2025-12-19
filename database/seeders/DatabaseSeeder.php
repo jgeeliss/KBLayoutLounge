@@ -27,5 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(KeyboardLayoutSeeder::class);
         // Seed an admin user
         $this->call(AdminUserSeeder::class);
+        // Seed news items
+        $this->call(NewsitemSeeder::class);
     }
 }
