@@ -9,14 +9,16 @@
         @method('PUT')
 
         <div>
-            <label for="category">
+            <label for="faq_category_id">
                 Category <span>*</span>
             </label>
-            <select name="category" id="category" required>
+            <select name="faq_category_id" id="faq_category_id" required>
                 <option value="">Select a category</option>
-                <option value="beginner" {{ old('category', $faq->category) == 'beginner' ? 'selected' : '' }}>Beginner</option>
-                <option value="moderate" {{ old('category', $faq->category) == 'moderate' ? 'selected' : '' }}>Moderate</option>
-                <option value="expert" {{ old('category', $faq->category) == 'expert' ? 'selected' : '' }}>Expert</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ old('faq_category_id', $faq->faq_category_id) == $category->id ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
+                @endforeach
             </select>
         </div>
 

@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminUserSeeder::class);
         // Seed news items
         $this->call(NewsitemSeeder::class);
+        // Seed FAQ categories
+        $this->call(FaqCategorySeeder::class);
         // Seed FAQs
         $this->call(FaqSeeder::class);
     }

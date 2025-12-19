@@ -8,6 +8,7 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\FaqCategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -21,6 +22,14 @@ Route::get('/faqs/{faq}', [FaqController::class, 'show'])->name('faqs.show');
 Route::get('/faqs/{faq}/edit', [FaqController::class, 'edit'])->name('faqs.edit');
 Route::put('/faqs/{faq}', [FaqController::class, 'update'])->name('faqs.update');
 Route::delete('/faqs/{faq}', [FaqController::class, 'destroy'])->name('faqs.destroy');
+
+// FAQ Category routes (admin only)
+Route::get('/faq-categories', [FaqCategoryController::class, 'index'])->name('faq-categories.index');
+Route::get('/faq-categories/create', [FaqCategoryController::class, 'create'])->name('faq-categories.create');
+Route::post('/faq-categories', [FaqCategoryController::class, 'store'])->name('faq-categories.store');
+Route::get('/faq-categories/{faqCategory}/edit', [FaqCategoryController::class, 'edit'])->name('faq-categories.edit');
+Route::put('/faq-categories/{faqCategory}', [FaqCategoryController::class, 'update'])->name('faq-categories.update');
+Route::delete('/faq-categories/{faqCategory}', [FaqCategoryController::class, 'destroy'])->name('faq-categories.destroy');
 
 // News routes
 Route::get('/news', [NewsitemController::class, 'index'])->name('newsitems.index');

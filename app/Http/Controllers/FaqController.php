@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faq;
+use App\Models\FaqCategory;
 use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
     public function index()
     {
-        $faqs = Faq::orderBy('created_at', 'desc')->get()->groupBy('category');
-        return view('faqs.index', compact('faqs'));
+        $categories = FaqCategory::with('faqs')->orderBy('order')->get();
+        return view('faqs.index', compact('categories'));
     }
 
     public function create()
@@ -19,7 +20,8 @@ class FaqController extends Controller
             return redirect()->route('faqs.index')
                 ->with('status', 'You do not have permission to create FAQs.');
         }
-        return view('faqs.create');
+        $categories = FaqCategory::orderBy('order')->get();
+        return view('faqs.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -30,7 +32,7 @@ class FaqController extends Controller
         }
 
         $validated = $request->validate([
-            'category' => 'required|in:beginner,moderate,expert',
+            'faq_category_id' => 'required|exists:faq_categories,id',
             'question' => 'required|string|max:255',
             'answer' => 'required|string',
         ]);
@@ -52,7 +54,8 @@ class FaqController extends Controller
             return redirect()->route('faqs.index')
                 ->with('status', 'You do not have permission to edit this FAQ.');
         }
-        return view('faqs.edit', compact('faq'));
+        $categories = FaqCategory::orderBy('order')->get();
+        return view('faqs.edit', compact('faq', 'categories'));
     }
 
     public function update(Request $request, Faq $faq)
@@ -63,7 +66,7 @@ class FaqController extends Controller
         }
 
         $validated = $request->validate([
-            'category' => 'required|in:beginner,moderate,expert',
+            'faq_category_id' => 'required|exists:faq_categories,id',
             'question' => 'required|string|max:255',
             'answer' => 'required|string',
         ]);

@@ -23,7 +23,7 @@ Functionele minimum requirements
             Publicatiedatum
     FAQ pagina
         De FAQ-pagina bevat een lijst van vragen en antwoorden, gegroepeerd per categorie OK
-        Admins kunnen categorieën en vraag/antwoorden toevoegen, wijzigen en verwijderen TODO
+        Admins kunnen categorieën en vraag/antwoorden toevoegen, wijzigen en verwijderen OK
         Elke bezoeker kan de FAQ zien OK
     Contact pagina
         Elke bezoeker kan een contactformulier invullen TODO

@@ -3,21 +3,25 @@
 @section('content')
 
 <h1>FAQ</h1>
-@can('create', App\Models\Faq::class)
-    <a href="{{ route('faqs.create') }}" class="button">Add FAQ</a>
-@endcan
+<div>
+    @can('create', App\Models\Faq::class)
+        <a href="{{ route('faqs.create') }}" class="button">Add FAQ</a>
+    @endcan
+    @can('viewAny', App\Models\FaqCategory::class)
+        <a href="{{ route('faq-categories.index') }}" class="button">Manage Categories</a>
+    @endcan
 </div>
 
-@if($faqs->isEmpty())
+@if($categories->isEmpty())
     <p class="text-gray">No FAQs yet.</p>
 @else
-    @foreach(['beginner', 'moderate', 'expert'] as $category)
-        @if($faqs->has($category))
-            <div>
-                <h2>{{ $category }}</h2>
+    @foreach($categories as $category)
+        @if($category->faqs->isNotEmpty())
+            <div style="margin-bottom: 2rem;">
+                <h2>{{ $category->name }}</h2>
                 <div>
-                    @foreach($faqs[$category] as $faq)
-                        <div>
+                    @foreach($category->faqs as $faq)
+                        <div style="margin-bottom: 1rem;">
                             <h3>
                                 <a href="{{ route('faqs.show', $faq) }}">{{ $faq->question }}</a>
                             </h3>
