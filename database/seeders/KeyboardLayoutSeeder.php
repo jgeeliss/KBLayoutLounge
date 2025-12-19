@@ -22,7 +22,7 @@ class KeyboardLayoutSeeder extends Seeder
             'email' => 'jgeeliss@gmail.com',
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
-            'about_me' => 'Keyboard layout enthusiast from the Netherlands. Creator of the Dutchman layout, optimized for Dutch and English typing. Always experimenting with new designs!',
+            'about_me' => 'Keyboard layout enthusiast from Belgium. Creator of the Dutchman layout, optimized for Dutch and English typing. Always experimenting with new designs!',
             'profile_picture' => 'profile_pictures/jesse_geelissen.jpg',
         ]);
 

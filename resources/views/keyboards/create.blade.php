@@ -46,7 +46,7 @@
         <div>
             <label>Keyboard Layout</label>
             @if ($errors->has('layout'))
-                <div class="error-box">
+                <div>
                     {{ $errors->first('layout') }}
                 </div>
             @endif

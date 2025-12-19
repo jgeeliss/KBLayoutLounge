@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="profile-header">
+    <div>
+        <div>
             <h1>{{ $user->user_alias }}'s Profile</h1>
 
             @if($user->profile_picture)
@@ -11,7 +11,7 @@
                 </div>
             @endif
 
-            <div class="profile-info">
+            <div>
                 <p><strong>Email:</strong> {{ $user->email }}</p>
 
                 @if($user->birthday)
@@ -26,7 +26,7 @@
                 @endif
             </div>
             @if(auth()->check() && auth()->id() === $user->id)
-                <a href="{{ route('users.edit') }}" class="btn btn-secondary">Edit My Profile</a>
+                <a href="{{ route('users.edit') }}" class="button">Edit My Profile</a>
             @endif
         </div>
 

@@ -3,6 +3,7 @@
 @section('content')
 
 <h1>All News</h1>
+<a href="{{ route('newsitems.create') }}" class="button">Add News Item</a>
 
 @if($newsitems->isEmpty())
     <p class="text-gray">No news items yet.</p>

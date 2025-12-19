@@ -3,7 +3,7 @@
 <!-- that Laravel uses to simulate a PUT request.-->
 <!-- source: https://laravel.com/docs/12.x/blade#method-field -->
 @section('content')
-    <div class="container">
+    <div>
         <x-user-form
             title="My Profile"
             :action="route('users.update')"

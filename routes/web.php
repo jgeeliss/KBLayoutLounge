@@ -14,6 +14,8 @@ Route::view('/about', 'about')->name('about');
 
 // News routes
 Route::get('/news', [NewsitemController::class, 'index'])->name('newsitems.index');
+Route::get('/news/create', [NewsitemController::class, 'create'])->name('newsitems.create');
+Route::post('/news', [NewsitemController::class, 'store'])->name('newsitems.store');
 Route::get('/news/{newsitem}', [NewsitemController::class, 'show'])->name('newsitems.show');
 
 // User routes

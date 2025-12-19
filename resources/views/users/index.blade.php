@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div>
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <h1>User Management</h1>
-            <a href="{{ route('users.create') }}" class="btn btn-primary">Create New User</a>
+            <a href="{{ route('users.create') }}" class="button">Create New User</a>
         </div>
 
-        <table class="table">
+        <table>
             <thead>
                 <tr>
                     <th>User Alias</th>
@@ -25,16 +25,16 @@
                         <td>{{ $user->created_at->format('M d, Y') }}</td>
                         <td>
                             @if ($user->is_admin)
-                                <span class="badge badge-success">Admin</span>
+                                <span>Admin</span>
                             @else
-                                <span class="badge badge-secondary">User</span>
+                                <span>User</span>
                             @endif
                         </td>
                         <td>
                             @if ($user->id !== auth()->id())
                                 <form method="POST" action="{{ route('users.toggleAdmin', $user) }}" style="display: inline;">
                                     @csrf
-                                    <button type="submit" class="btn btn-sm {{ $user->is_admin ? 'btn-warning' : 'btn-primary' }}">
+                                    <button type="submit" class="{{ $user->is_admin ? 'btn-delete-small' : 'btn-primary-small' }}">
                                         {{ $user->is_admin ? 'Revoke Admin' : 'Make Admin' }}
                                     </button>
                                 </form>
