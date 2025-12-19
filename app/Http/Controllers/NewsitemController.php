@@ -44,4 +44,31 @@ class NewsitemController extends Controller
     {
         return view('newsitems.show', compact('newsitem'));
     }
+
+    public function edit(Newsitem $newsitem)
+    {
+        if (!auth()->user()->can('update', $newsitem)) {
+            return redirect()->route('newsitems.index')
+                ->with('status', 'You do not have permission to edit this news item.');
+        }
+        return view('newsitems.edit', compact('newsitem'));
+    }
+
+    public function update(Request $request, Newsitem $newsitem)
+    {
+        if (!auth()->user()->can('update', $newsitem)) {
+            return redirect()->route('newsitems.index')
+                ->with('status', 'You do not have permission to update this news item.');
+        }
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'body' => 'required|string',
+        ]);
+
+        $newsitem->update($validated);
+
+        return redirect()->route('newsitems.show', $newsitem)
+            ->with('status', 'News item updated successfully!');
+    }
 }

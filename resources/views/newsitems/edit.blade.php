@@ -2,10 +2,11 @@
 
 @section('content')
 <div>
-    <h2>Create News Item</h2>
+    <h2>Edit News Item</h2>
 
-    <form action="{{ route('newsitems.store') }}" method="POST">
+    <form action="{{ route('newsitems.update', $newsitem) }}" method="POST">
         @csrf
+        @method('PUT')
 
         <div>
             <label for="title">
@@ -15,7 +16,7 @@
                 type="text"
                 name="title"
                 id="title"
-                value="{{ old('title') }}"
+                value="{{ old('title', $newsitem->title) }}"
                 required
                 placeholder="Enter news title">
         </div>
@@ -29,14 +30,14 @@
                 id="body"
                 rows="10"
                 required
-                placeholder="Enter news content">{{ old('body') }}</textarea>
+                placeholder="Enter news content">{{ old('body', $newsitem->body) }}</textarea>
         </div>
 
         <div>
             <button type="submit">
-                Create News Item
+                Update News Item
             </button>
-            <a href="{{ route('newsitems.index') }}">
+            <a href="{{ route('newsitems.show', $newsitem) }}">
                 Cancel
             </a>
         </div>

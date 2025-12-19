@@ -17,6 +17,8 @@ Route::get('/news', [NewsitemController::class, 'index'])->name('newsitems.index
 Route::get('/news/create', [NewsitemController::class, 'create'])->name('newsitems.create');
 Route::post('/news', [NewsitemController::class, 'store'])->name('newsitems.store');
 Route::get('/news/{newsitem}', [NewsitemController::class, 'show'])->name('newsitems.show');
+Route::get('/news/{newsitem}/edit', [NewsitemController::class, 'edit'])->name('newsitems.edit');
+Route::put('/news/{newsitem}', [NewsitemController::class, 'update'])->name('newsitems.update');
 
 // User routes
 Route::get('/users', [UserController::class, 'index'])->name('users.index');

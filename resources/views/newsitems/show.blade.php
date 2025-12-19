@@ -12,6 +12,9 @@
 
     <div>
         <a href="{{ route('newsitems.index') }}">← Back to News</a>
+        @can('update', $newsitem)
+            <a href="{{ route('newsitems.edit', $newsitem) }}" class="button">Edit</a>
+        @endcan
     </div>
 </div>
 
