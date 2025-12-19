@@ -17,7 +17,12 @@
             <li><a href="{{ route('keyboards.index') }}">Keyboard Layouts</a></li>
             <li><a href="{{ route('keyboards.create') }}">Add Keyboard</a></li>
             <li><a href="{{ route('newsitems.index') }}">News</a></li>
-            <li><a href="{{ route('about') }}">About</a></li>
+            <li class="dropdown">
+                <a href="#" onclick="toggleInfoDropdown(event)">Info</a>
+                <ul id="info-dropdown-menu" class="dropdown-menu">
+                        <li class="dropdown-item"><a href="{{ route('about') }}">About</a></li>
+                        <li class="dropdown-item"><a href="{{ route('about') }}">FAQ</a></li>
+                </ul>
             <!-- a spacer here -->
             <li class="nav-spacer"></li>
 
@@ -25,8 +30,8 @@
 
             @auth
                 <li class="dropdown">
-                    <a href="#" onclick="toggleDropdown(event)"><span class="user-icon">👤</span> {{ auth()->user()->user_alias }}</a>
-                    <ul id="dropdown-menu" class="dropdown-menu">
+                    <a href="#" onclick="toggleUserDropdown(event)"><span class="user-icon">👤</span> {{ auth()->user()->user_alias }}</a>
+                    <ul id="user-dropdown-menu" class="dropdown-menu">
                         <li class="dropdown-item"><a href="{{ route('users.edit') }}">My profile</a></li>
                         <li class="dropdown-item"><a href="{{ route('keyboards.myLayouts') }}">My layouts</a></li>
                         <li class="dropdown-item"><a href="{{ route('comments.index') }}">My comments</a></li>
@@ -47,8 +52,12 @@
     </nav>
 
     <script>
-        function toggleDropdown(event) {
-            const menu = document.getElementById("dropdown-menu");
+        function toggleUserDropdown(event) {
+            const menu = document.getElementById("user-dropdown-menu");
+            menu.classList.toggle("dropdown-menu-visible");
+        }
+        function toggleInfoDropdown(event) {
+            const menu = document.getElementById("info-dropdown-menu");
             menu.classList.toggle("dropdown-menu-visible");
         }
     </script>

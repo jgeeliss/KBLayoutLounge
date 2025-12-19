@@ -48,9 +48,6 @@
                 id="image"
                 accept="image/*">
             <small class="text-muted">Max size: 2MB. Accepted formats: JPEG, PNG, JPG, GIF</small>
-            @error('image')
-                <div>{{ $message }}</div>
-            @enderror
         </div>
 
         <div>
