@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Keyboard;
+use App\Models\Newsitem;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,12 +18,11 @@ class HomeController extends Controller
             ->sortByDesc(fn($keyboard) => $keyboard->averageRating())
             ->take(3);
 
-        // Get latest 3 uploaded keyboards
-        $latestKeyboards = Keyboard::with(['ratings', 'user'])
-            ->latest()
+        // Get latest 3 news items
+        $latestNews = Newsitem::latest()
             ->take(3)
             ->get();
 
-        return view('home', compact('topKeyboards', 'latestKeyboards'));
+        return view('home', compact('topKeyboards', 'latestNews'));
     }
 }

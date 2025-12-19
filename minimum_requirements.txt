@@ -15,7 +15,7 @@ Functionele minimum requirements
             Kleine "over mij" tekst OK
     Laatste nieuwtjes
         Admins kunnen nieuwe nieuwsitems toevoegen, wijzigen en verwijderen TODO
-        Elke bezoeker kan een lijst van alle nieuwtjes en een detail per nieuwtje zien TODO 
+        Elke bezoeker kan een lijst van alle nieuwtjes en een detail per nieuwtje zien OK
         De nieuwsitems hebben minstens: TODO
             Titel
             Afbeelding (opgeslagen op de server)
