@@ -60,14 +60,28 @@
         function toggleUserDropdown(event) {
             const menu = document.getElementById("user-dropdown-menu");
             menu.classList.toggle("dropdown-menu-visible");
+            // close other dropdowns if open
+            const infoMenu = document.getElementById("info-dropdown-menu");
+            infoMenu.classList.remove("dropdown-menu-visible");
+            const keyboardsMenu = document.getElementById("keyboards-dropdown-menu");
+            keyboardsMenu.classList.remove("dropdown-menu-visible");
         }
         function toggleInfoDropdown(event) {
             const menu = document.getElementById("info-dropdown-menu");
             menu.classList.toggle("dropdown-menu-visible");
+            // close other dropdowns if open
+            const userMenu = document.getElementById("user-dropdown-menu");
+            userMenu.classList.remove("dropdown-menu-visible");
+            const keyboardsMenu = document.getElementById("keyboards-dropdown-menu");
+            keyboardsMenu.classList.remove("dropdown-menu-visible");
         }
         function toggleKeyboardsDropdown(event) {
             const menu = document.getElementById("keyboards-dropdown-menu");
             menu.classList.toggle("dropdown-menu-visible");
+            const userMenu = document.getElementById("user-dropdown-menu");
+            userMenu.classList.remove("dropdown-menu-visible");
+            const infoMenu = document.getElementById("info-dropdown-menu");
+            infoMenu.classList.remove("dropdown-menu-visible");
         }
     </script>
 </header>
