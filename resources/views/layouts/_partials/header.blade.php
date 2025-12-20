@@ -27,6 +27,7 @@
                     <li class="dropdown-item"><a href="{{ route('about') }}">About</a></li>
                     <li class="dropdown-item"><a href="{{ route('newsitems.index') }}">News</a></li>
                     <li class="dropdown-item"><a href="{{ route('faqs.index') }}">FAQ</a></li>
+                    <li class="dropdown-item"><a href="{{ route('contact.show') }}">Contact Us</a></li>
                 </ul>
             <!-- a spacer here -->
             <li class="nav-spacer"></li>

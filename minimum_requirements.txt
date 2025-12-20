@@ -26,7 +26,7 @@ Functionele minimum requirements
         Admins kunnen categorieën en vraag/antwoorden toevoegen, wijzigen en verwijderen OK
         Elke bezoeker kan de FAQ zien OK
     Contact pagina
-        Elke bezoeker kan een contactformulier invullen TODO
+        Elke bezoeker kan een contactformulier invullen OK
         Bij het versturen van dit contactformulier krijgt de admin een email met de inhoud van het formulier TODO 
 
 
