@@ -14,13 +14,18 @@
             <!-- a spacer here -->
             <li class="nav-spacer"></li>
             <li><a href="{{ route('home') }}">Home</a></li>
-            <li><a href="{{ route('keyboards.index') }}">Keyboard Layouts</a></li>
-            <li><a href="{{ route('keyboards.create') }}">Add Keyboard</a></li>
-            <li><a href="{{ route('newsitems.index') }}">News</a></li>
+            <li class="dropdown">
+                <a href="#" onclick="toggleKeyboardsDropdown(event)">Keyboards</a>
+                <ul id="keyboards-dropdown-menu" class="dropdown-menu">
+                    <li class="dropdown-item"><a href="{{ route('keyboards.index') }}">Keyboard Layouts</a></li>
+                    <li class="dropdown-item"><a href="{{ route('keyboards.create') }}">Add Keyboard</a></li>
+                </ul>
+            </li>
             <li class="dropdown">
                 <a href="#" onclick="toggleInfoDropdown(event)">Info</a>
                 <ul id="info-dropdown-menu" class="dropdown-menu">
                     <li class="dropdown-item"><a href="{{ route('about') }}">About</a></li>
+                    <li class="dropdown-item"><a href="{{ route('newsitems.index') }}">News</a></li>
                     <li class="dropdown-item"><a href="{{ route('faqs.index') }}">FAQ</a></li>
                 </ul>
             <!-- a spacer here -->
@@ -58,6 +63,10 @@
         }
         function toggleInfoDropdown(event) {
             const menu = document.getElementById("info-dropdown-menu");
+            menu.classList.toggle("dropdown-menu-visible");
+        }
+        function toggleKeyboardsDropdown(event) {
+            const menu = document.getElementById("keyboards-dropdown-menu");
             menu.classList.toggle("dropdown-menu-visible");
         }
     </script>
