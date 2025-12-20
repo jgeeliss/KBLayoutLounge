@@ -29,15 +29,21 @@ class FaqCategoryController extends Controller
                 ->with('status', 'You do not have permission to create categories.');
         }
 
-        $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:faq_categories,name',
-            'order' => 'nullable|integer',
-        ]);
+        try {
+            $validated = $request->validate([
+                'name' => 'required|string|max:255|unique:faq_categories,name',
+                'order' => 'nullable|integer',
+            ]);
 
-        FaqCategory::create($validated);
+            FaqCategory::create($validated);
 
-        return redirect()->route('faq-categories.index')
-            ->with('status', 'Category created successfully!');
+            return redirect()->route('faq-categories.index')
+                ->with('status', 'Category created successfully!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()
+                ->withInput()
+                ->with('status', 'A category with this name already exists.');
+        }
     }
 
     public function edit(FaqCategory $faqCategory)
@@ -56,15 +62,21 @@ class FaqCategoryController extends Controller
                 ->with('status', 'You do not have permission to update this category.');
         }
 
-        $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:faq_categories,name,' . $faqCategory->id,
-            'order' => 'nullable|integer',
-        ]);
+        try {
+            $validated = $request->validate([
+                'name' => 'required|string|max:255|unique:faq_categories,name,' . $faqCategory->id,
+                'order' => 'nullable|integer',
+            ]);
 
-        $faqCategory->update($validated);
+            $faqCategory->update($validated);
 
-        return redirect()->route('faq-categories.index')
-            ->with('status', 'Category updated successfully!');
+            return redirect()->route('faq-categories.index')
+                ->with('status', 'Category updated successfully!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()
+                ->withInput()
+                ->with('status', 'A category with this name already exists.');
+        }
     }
 
     public function destroy(FaqCategory $faqCategory)
