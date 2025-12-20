@@ -72,14 +72,6 @@ class FaqController extends Controller
             'answer' => 'required|string',
         ]);
 
-        if ($request->hasFile('image')) {
-            // Delete old image if it exists
-            if ($faq->image) {
-                Storage::disk('public')->delete($faq->image);
-            }
-            $validated['image'] = $request->file('image')->store('faqs', 'public');
-        }
-
         $faq->update($validated);
 
         return redirect()->route('faqs.show', $faq)

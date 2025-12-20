@@ -39,8 +39,8 @@ class NewsitemController extends Controller
         // note: uses Laravel's Storage facade to handle file uploads, filename is auto-generated
         // source: https://laravel.com/docs/12.x/filesystem#file-uploads
         if ($request->hasFile('image')) {
-            // note: store the image in the 'newsitems' directory in the 'public' disk
-            $validated['image'] = $request->file('image')->store('newsitems', 'public');
+            // note: store the image in the 'news_pictures' directory in the 'public' disk
+            $validated['image'] = $request->file('image')->store('news_pictures', 'public');
         }
 
         Newsitem::create($validated);
@@ -81,7 +81,7 @@ class NewsitemController extends Controller
             if ($newsitem->image) {
                 Storage::disk('public')->delete($newsitem->image);
             }
-            $validated['image'] = $request->file('image')->store('newsitems', 'public');
+            $validated['image'] = $request->file('image')->store('news_pictures', 'public');
         }
 
         $newsitem->update($validated);
