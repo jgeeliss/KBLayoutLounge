@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Faq;
 use App\Models\FaqCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FaqController extends Controller
 {
@@ -74,7 +75,7 @@ class FaqController extends Controller
         if ($request->hasFile('image')) {
             // Delete old image if it exists
             if ($faq->image) {
-                \Storage::disk('public')->delete($faq->image);
+                Storage::disk('public')->delete($faq->image);
             }
             $validated['image'] = $request->file('image')->store('faqs', 'public');
         }

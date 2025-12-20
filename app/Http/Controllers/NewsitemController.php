@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Newsitem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NewsitemController extends Controller
 {
@@ -78,7 +79,7 @@ class NewsitemController extends Controller
         if ($request->hasFile('image')) {
             // Delete old image if it exists
             if ($newsitem->image) {
-                \Storage::disk('public')->delete($newsitem->image);
+                Storage::disk('public')->delete($newsitem->image);
             }
             $validated['image'] = $request->file('image')->store('newsitems', 'public');
         }
@@ -98,7 +99,7 @@ class NewsitemController extends Controller
 
         // Delete image if exists
         if ($newsitem->image) {
-            \Storage::disk('public')->delete($newsitem->image);
+            Storage::disk('public')->delete($newsitem->image);
         }
 
         $newsitem->delete();

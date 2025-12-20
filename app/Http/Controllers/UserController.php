@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 /**
 *  handles two different scenarios: admin creating new users and regular users updating their own profile.
@@ -162,7 +163,7 @@ class UserController extends Controller
         if ($request->hasFile('profile_picture')) {
             // Delete old profile picture if exists
             if ($user->profile_picture) {
-                \Storage::disk('public')->delete($user->profile_picture);
+                Storage::disk('public')->delete($user->profile_picture);
             }
             $user->profile_picture = $request->file('profile_picture')->store('profile_pictures', 'public');
         }
