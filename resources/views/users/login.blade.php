@@ -20,6 +20,11 @@
         <label for="password">Password</label>
         <input type="password" id="password" name="password">
 
+        <label for="remember">
+            <input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
+            Remember me
+        </label>
+
         <input type="submit" value="Log in">
     </form>
 @endsection

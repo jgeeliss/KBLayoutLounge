@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<!-- TODO: turn this into a component too -->
 @section('content')
 <div>
     <h2>Create News Item</h2>

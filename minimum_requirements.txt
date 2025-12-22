@@ -27,7 +27,7 @@ Functionele minimum requirements
         Elke bezoeker kan de FAQ zien OK
     Contact pagina
         Elke bezoeker kan een contactformulier invullen OK
-        Bij het versturen van dit contactformulier krijgt de admin een email met de inhoud van het formulier TODO 
+        Bij het versturen van dit contactformulier krijgt de admin een email met de inhoud van het formulier OK 
 
 
 Technische requirements
@@ -39,7 +39,7 @@ Naast de functionele requirements zijn er ook enkele technische standaarden die 
         Gebruik een component waar logisch OK
         Gebruik de technieken die aan bod gekomen zijn in de cursus en de oefeningen
             Control structures OK
-            XSS protection TODO
+            XSS protection OK ( All user-generated content is properly escaped using Blade {{ }} syntax, which prevents cross-site scripting attacks by converting potentially dangerous characters into safe HTML entities)
             CSRF protection OK
             Client-side validation OK
     Routes
@@ -61,7 +61,7 @@ Naast de functionele requirements zijn er ook enkele technische standaarden die 
     Authentication
         Standaard functionaliteiten
             Log in/out OK
-            'Remember me' TODO
+            'Remember me' OK
             Registreer OK
             Mogelijkheid om wachtwoord te resetten bij vergeten wachtwoord TODO
         Voeg één default admin toe OK
