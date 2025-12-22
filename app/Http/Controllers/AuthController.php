@@ -65,7 +65,7 @@ class AuthController extends Controller
     public function storeLogin(Request $request)
     {
         $request->validate([
-            'user_alias' => 'required|string',
+            'email' => 'required|email',
             'password' => 'required',
         ]);
 
@@ -73,13 +73,13 @@ class AuthController extends Controller
         // note: the $remember parameter controls the "remember me" functionality.
         // When set to true, Laravel will keep the user authenticated indefinitely (or until they manually log out)
         // source: https://kinsta.com/blog/laravel-authentication/
-        if (Auth::attempt(['user_alias' => $request->user_alias, 'password' => $request->password], $request->filled('remember'))) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->filled('remember'))) {
             $request->session()->regenerate();
 
             return redirect()->route('home')->with('status', 'Welcome back, '.Auth::user()->user_alias.'!');
         }
 
-        return redirect()->back()->withErrors(['invalid' => 'User or password invalid!'])->withInput();
+        return redirect()->back()->withErrors(['invalid' => 'Email or password invalid!'])->withInput();
     }
 
     public function logout(Request $request)

@@ -14,8 +14,8 @@
     <form action="" method="POST">
         @csrf
 
-        <label for="user_alias">Your user alias</label>
-        <input type="text" id="user_alias" name="user_alias" value="{{ old('user_alias') }}">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" value="{{ old('email') }}">
 
         <label for="password">Password</label>
         <input type="password" id="password" name="password">
