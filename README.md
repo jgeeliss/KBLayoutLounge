@@ -53,9 +53,9 @@ After cloning this repository, follow these steps to get started:
 
 When seeding the database, an admin user will be created to manage all keyboard layouts and comments:
 
-- **Email**: admin@30keys.com
+- **Email**: admin@ehb.be
 - **Username**: admin
-- **Password**: admin
+- **Password**: Password!321
 
 Admin users have special permissions:
 - Delete any keyboard layout (not just their own)
