@@ -73,3 +73,20 @@ This project uses Laravel Pint for code formatting:
 ```bash
 ./vendor/bin/pint
 ```
+
+## Sources & References
+
+Throughout the development of this project, the following resources were used:
+
+### Laravel Documentation
+- [Blade Anonymous Components](https://laravel.com/docs/12.x/blade#anonymous-components) - Used for form components
+- [Blade Method Field](https://laravel.com/docs/12.x/blade#method-field) - Used for PUT/PATCH/DELETE forms
+- [Laravel Mail & Mailables](https://laravel.com/docs/12.x/mail#generating-mailables) - Contact form email functionality
+- [Mail Envelope](https://laravel.com/docs/12.x/mail#using-the-envelope) - Email configuration
+- [File Uploads](https://laravel.com/docs/12.x/filesystem#file-uploads) - Image upload handling
+
+### External Resources
+- [Mailtrap - Send Email in Laravel](https://mailtrap.io/blog/send-email-in-laravel/) - Email setup guide
+- [Kinsta - Laravel Authentication](https://kinsta.com/blog/laravel-authentication/) - Authentication implementation
+- [Laracasts - Confirm Delete Alert](https://laracasts.com/discuss/channels/laravel/laravel-confirm-delete-in-an-alert-in-my-view) - Delete confirmation pattern
+- [Intelephense Issue #3125](https://github.com/bmewburn/vscode-intelephense/issues/3125) - IDE helper configuration

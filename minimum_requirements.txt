@@ -75,5 +75,5 @@ Naast de functionele requirements zijn er ook enkele technische standaarden die 
 Zorg voor een readme.md file. Deze file bevat minstens:
 
     De stappen dit iemand moet uitvoeren om je project te laten werken OK
-    Je bronvermeldingen TODO
-    Enige andere belangrijke informatie die je wilt meedelen over je project TODO
+    Je bronvermeldingen OK
+    Enige andere belangrijke informatie die je wilt meedelen over je project OK
