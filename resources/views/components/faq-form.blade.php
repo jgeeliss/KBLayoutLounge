@@ -18,7 +18,7 @@
 
     <div>
         <label for="faq_category_id">
-            Category <span>*</span>
+            Category *
         </label>
         <select name="faq_category_id" id="faq_category_id" required>
             <option value="">Select a category</option>
@@ -32,14 +32,14 @@
 
     <div>
         <label for="question">
-            Question <span>*</span>
+            Question *
         </label>
         <input type="text" name="question" id="question" value="{{ old('question', $faq?->question) }}" required placeholder="Enter question">
     </div>
 
     <div>
         <label for="answer">
-            Answer <span>*</span>
+            Answer *
         </label>
         <textarea name="answer" id="answer" rows="10" required placeholder="Enter answer">{{ old('answer', $faq?->answer) }}</textarea>
     </div>
