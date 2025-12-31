@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             'about_me' => 'Just a test user exploring different keyboard layouts and sharing my typing journey!',
         ]);
 
+        // Seed Language Tags first (needed by KeyboardLayoutSeeder)
+        $this->call(LanguageTagSeeder::class);
         // Seed some famous keyboard layouts with their creators
         $this->call(KeyboardLayoutSeeder::class);
         // Seed an admin user
@@ -33,7 +35,5 @@ class DatabaseSeeder extends Seeder
         $this->call(FaqCategorySeeder::class);
         // Seed FAQs
         $this->call(FaqSeeder::class);
-        // Seed Language Tags
-        $this->call(LanguageTagSeeder::class);
     }
 }
