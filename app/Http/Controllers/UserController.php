@@ -105,6 +105,11 @@ class UserController extends Controller
             return back()->with('status', 'You cannot perform this action.');
         }
 
+        // Prevent admin from demoting themselves
+        if (auth()->id() === $user->id) {
+            return back()->with('status', 'You cannot change your own admin status.');
+        }
+        // if user is admin, switch to regular user, else switch to admin:
         $user->is_admin = !$user->is_admin;
         $user->save();
 
