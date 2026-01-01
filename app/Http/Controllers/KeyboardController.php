@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Keyboard;
+use App\Models\LanguageTag;
 use Illuminate\Http\Request;
 
 class KeyboardController extends Controller
@@ -10,11 +11,26 @@ class KeyboardController extends Controller
     /**
      * Display a listing of the keyboards.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $keyboards = Keyboard::all();
+        $languageTagId = $request->query('language_tag');
+        
+        $query = Keyboard::query();
+        
+        if ($languageTagId) {
+            // note: whereHas allows filtering based on related models
+            // it takes an anonymous function to specify the conditions on the related model
+            // 'use' is used to bring in the variable from the parent scope
+            // in which the where clause filters keyboards that have the specified language tag
+            $query->whereHas('languageTags', function ($q) use ($languageTagId) {
+                $q->where('language_tags.id', $languageTagId);
+            });
+        }
+        
+        $keyboards = $query->get();
+        $languageTags = LanguageTag::orderBy('name')->get();
 
-        return view('keyboards.index', compact('keyboards'));
+        return view('keyboards.index', compact('keyboards', 'languageTags', 'languageTagId'));
     }
 
     /**

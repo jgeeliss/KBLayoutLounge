@@ -2,6 +2,20 @@
 
 @section('content')
 
+<div>
+    <form method="GET" action="{{ route('keyboards.index') }}">
+        <label for="language_tag">Filter by language:</label>
+        <select name="language_tag" id="language_tag" onchange="this.form.submit()">
+            <option value="">All languages</option>
+            @foreach($languageTags as $tag)
+                <option value="{{ $tag->id }}" {{ $languageTagId == $tag->id ? 'selected' : '' }}>
+                    {{ $tag->name }}
+                </option>
+            @endforeach
+        </select>
+    </form>
+</div>
+
 @foreach($keyboards as $keyboard)
 <div>
     <h3>
