@@ -27,7 +27,7 @@ class KeyboardController extends Controller
             });
         }
         
-        $keyboards = $query->get();
+        $keyboards = $query->orderBy('name')->get();
         $languageTags = LanguageTag::orderBy('name')->get();
 
         return view('keyboards.index', compact('keyboards', 'languageTags', 'languageTagId'));
