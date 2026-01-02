@@ -10,21 +10,23 @@ class FaqCategoryController extends Controller
     public function index()
     {
         $categories = FaqCategory::with('faqs')->orderBy('order')->get();
+
         return view('faq-categories.index', compact('categories'));
     }
 
     public function create()
     {
-        if (!auth()->user()->can('create', FaqCategory::class)) {
+        if (! auth()->user()->can('create', FaqCategory::class)) {
             return redirect()->route('faq-categories.index')
                 ->with('status', 'You do not have permission to create categories.');
         }
+
         return view('faq-categories.create');
     }
 
     public function store(Request $request)
     {
-        if (!auth()->user()->can('create', FaqCategory::class)) {
+        if (! auth()->user()->can('create', FaqCategory::class)) {
             return redirect()->route('faq-categories.index')
                 ->with('status', 'You do not have permission to create categories.');
         }
@@ -48,23 +50,24 @@ class FaqCategoryController extends Controller
 
     public function edit(FaqCategory $faqCategory)
     {
-        if (!auth()->user()->can('update', $faqCategory)) {
+        if (! auth()->user()->can('update', $faqCategory)) {
             return redirect()->route('faq-categories.index')
                 ->with('status', 'You do not have permission to edit this category.');
         }
+
         return view('faq-categories.edit', compact('faqCategory'));
     }
 
     public function update(Request $request, FaqCategory $faqCategory)
     {
-        if (!auth()->user()->can('update', $faqCategory)) {
+        if (! auth()->user()->can('update', $faqCategory)) {
             return redirect()->route('faq-categories.index')
                 ->with('status', 'You do not have permission to update this category.');
         }
 
         try {
             $validated = $request->validate([
-                'name' => 'required|string|max:255|unique:faq_categories,name,' . $faqCategory->id,
+                'name' => 'required|string|max:255|unique:faq_categories,name,'.$faqCategory->id,
                 'order' => 'required|integer',
             ]);
 
@@ -81,7 +84,7 @@ class FaqCategoryController extends Controller
 
     public function destroy(FaqCategory $faqCategory)
     {
-        if (!auth()->user()->can('delete', $faqCategory)) {
+        if (! auth()->user()->can('delete', $faqCategory)) {
             return redirect()->route('faq-categories.index')
                 ->with('status', 'You do not have permission to delete this category.');
         }

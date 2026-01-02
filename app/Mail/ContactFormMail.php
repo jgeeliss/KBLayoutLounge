@@ -25,14 +25,14 @@ class ContactFormMail extends Mailable
     ) {}
 
     /**
-     * Get the message envelope. 
+     * Get the message envelope.
      * This defines the subject and the recipients.
      * Source: https://laravel.com/docs/12.x/mail#using-the-envelope
      */
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Contact Form Submission from ' . $this->senderName,
+            subject: 'New Contact Form Submission from '.$this->senderName,
             replyTo: [$this->senderEmail],
         );
     }

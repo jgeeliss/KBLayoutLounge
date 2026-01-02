@@ -5,29 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\Faq;
 use App\Models\FaqCategory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class FaqController extends Controller
 {
     public function index()
     {
         $categories = FaqCategory::with('faqs')->orderBy('order')->get();
+
         return view('faqs.index', compact('categories'));
     }
 
     public function create()
     {
-        if (!auth()->user()->can('create', Faq::class)) {
+        if (! auth()->user()->can('create', Faq::class)) {
             return redirect()->route('faqs.index')
                 ->with('status', 'You do not have permission to create FAQs.');
         }
         $categories = FaqCategory::orderBy('order')->get();
+
         return view('faqs.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
-        if (!auth()->user()->can('create', Faq::class)) {
+        if (! auth()->user()->can('create', Faq::class)) {
             return redirect()->route('faqs.index')
                 ->with('status', 'You do not have permission to create FAQs.');
         }
@@ -51,17 +52,18 @@ class FaqController extends Controller
 
     public function edit(Faq $faq)
     {
-        if (!auth()->user()->can('update', $faq)) {
+        if (! auth()->user()->can('update', $faq)) {
             return redirect()->route('faqs.index')
                 ->with('status', 'You do not have permission to edit this FAQ.');
         }
         $categories = FaqCategory::orderBy('order')->get();
+
         return view('faqs.edit', compact('faq', 'categories'));
     }
 
     public function update(Request $request, Faq $faq)
     {
-        if (!auth()->user()->can('update', $faq)) {
+        if (! auth()->user()->can('update', $faq)) {
             return redirect()->route('faqs.index')
                 ->with('status', 'You do not have permission to update this FAQ.');
         }
@@ -80,7 +82,7 @@ class FaqController extends Controller
 
     public function destroy(Faq $faq)
     {
-        if (!auth()->user()->can('delete', $faq)) {
+        if (! auth()->user()->can('delete', $faq)) {
             return redirect()->route('faqs.index')
                 ->with('status', 'You do not have permission to delete this FAQ.');
         }

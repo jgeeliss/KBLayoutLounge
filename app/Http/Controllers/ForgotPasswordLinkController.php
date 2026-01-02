@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Str;
 
 // source: https://kinsta.com/blog/laravel-authentication/
@@ -26,7 +25,7 @@ class ForgotPasswordLinkController extends Controller
     public function sendResetLinkEmail(Request $request)
     {
         $request->validate([
-             'email' => 'required|email',
+            'email' => 'required|email',
         ]);
 
         // note: this uses Laravel's built-in password reset functionality to send a password reset link
@@ -58,14 +57,14 @@ class ForgotPasswordLinkController extends Controller
         ]);
 
         $status = Password::reset(
-            // only() retrieves a subset of the input data from the request. This ensures that only 
+            // only() retrieves a subset of the input data from the request. This ensures that only
             // the necessary fields are passed to the reset method which is safer.
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user) use ($request) {
                 // forceFill() is needed because the password field is not fillable by default.
                 $user->forceFill([
                     'password' => Hash::make($request->password),
-                    'remember_token' => Str::random(60)
+                    'remember_token' => Str::random(60),
                 ])->save();
             }
         );

@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 /**
-*  handles two different scenarios: admin creating new users and regular users updating their own profile.
-*/
+ *  handles two different scenarios: admin creating new users and regular users updating their own profile.
+ */
 class UserController extends Controller
 {
     /**
@@ -17,12 +17,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login')->with('status', 'You must be logged in to access this page.');
         }
 
         // Use policy to authorize
-        if (!auth()->user()->can('manageUsers', User::class)) {
+        if (! auth()->user()->can('manageUsers', User::class)) {
             return redirect()->route('home')->with('status', 'You must be an admin to access this page.');
         }
 
@@ -36,12 +36,12 @@ class UserController extends Controller
      */
     public function create()
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login')->with('status', 'You must be logged in to access this page.');
         }
 
         // Use policy to authorize
-        if (!auth()->user()->can('create', User::class)) {
+        if (! auth()->user()->can('create', User::class)) {
             return redirect()->route('home')->with('status', 'You must be an admin to access this page.');
         }
 
@@ -53,12 +53,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login')->with('status', 'You must be logged in to perform this action.');
         }
 
         // Use policy to authorize
-        if (!auth()->user()->can('create', User::class)) {
+        if (! auth()->user()->can('create', User::class)) {
             return redirect()->route('home')->with('status', 'You must be an admin to perform this action.');
         }
 
@@ -96,12 +96,12 @@ class UserController extends Controller
      */
     public function toggleAdmin(User $user)
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login')->with('status', 'You must be logged in to perform this action.');
         }
 
         // Use policy to authorize
-        if (!auth()->user()->can('toggleAdmin', $user)) {
+        if (! auth()->user()->can('toggleAdmin', $user)) {
             return back()->with('status', 'You cannot perform this action.');
         }
 
@@ -110,7 +110,7 @@ class UserController extends Controller
             return back()->with('status', 'You cannot change your own admin status.');
         }
         // if user is admin, switch to regular user, else switch to admin:
-        $user->is_admin = !$user->is_admin;
+        $user->is_admin = ! $user->is_admin;
         $user->save();
 
         return back()->with('status', "Admin privileges updated for {$user->user_alias}.");
@@ -132,11 +132,12 @@ class UserController extends Controller
      */
     public function edit()
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login')->with('status', 'You must be logged in to access this page.');
         }
 
         $user = auth()->user();
+
         return view('users.edit', compact('user'));
     }
 
@@ -145,7 +146,7 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login')->with('status', 'You must be logged in to perform this action.');
         }
 
@@ -154,8 +155,8 @@ class UserController extends Controller
         $request->validate([
             // validation adds user ID to check if the user_alias is unique among all users except the current user
             // otherwise the validation would always fail because the user's current alias already exists in the database!
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'user_alias' => 'required|string|min:3|max:15|unique:users,user_alias,' . $user->id,
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'user_alias' => 'required|string|min:3|max:15|unique:users,user_alias,'.$user->id,
             'password' => 'nullable|confirmed|min:6',
             'birthday' => 'nullable|date|before:today',
             'about_me' => 'nullable|string|max:500',

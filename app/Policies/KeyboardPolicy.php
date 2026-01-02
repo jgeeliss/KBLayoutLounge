@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Keyboard;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 // note: created by running "php artisan make:policy KeyboardPolicy --model=Keyboard"
 class KeyboardPolicy
@@ -31,7 +30,7 @@ class KeyboardPolicy
     public function create(User $user): bool
     {
         // Admins cannot create keyboard layouts
-        return !$user->isAdmin();
+        return ! $user->isAdmin();
     }
 
     /**
@@ -75,6 +74,6 @@ class KeyboardPolicy
      */
     public function rate(User $user, Keyboard $keyboard): bool
     {
-        return $keyboard->user_id !== $user->id && !$user->isAdmin();
+        return $keyboard->user_id !== $user->id && ! $user->isAdmin();
     }
 }

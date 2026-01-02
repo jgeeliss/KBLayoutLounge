@@ -14,9 +14,9 @@ class KeyboardController extends Controller
     public function index(Request $request)
     {
         $languageTagId = $request->query('language_tag');
-        
+
         $query = Keyboard::query();
-        
+
         if ($languageTagId) {
             // note: whereHas allows filtering based on related models
             // it takes an anonymous function to specify the conditions on the related model
@@ -26,7 +26,7 @@ class KeyboardController extends Controller
                 $q->where('language_tags.id', $languageTagId);
             });
         }
-        
+
         $keyboards = $query->orderBy('name')->get();
         $languageTags = LanguageTag::orderBy('name')->get();
 
@@ -38,7 +38,7 @@ class KeyboardController extends Controller
      */
     public function myLayouts()
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login')->with('status', 'You must be logged in to view your layouts.');
         }
 
@@ -58,11 +58,12 @@ class KeyboardController extends Controller
         }
 
         // Use policy to authorize
-        if (!auth()->user()->can('create', Keyboard::class)) {
+        if (! auth()->user()->can('create', Keyboard::class)) {
             return redirect()->route('keyboards.index')->with('status', 'Admins cannot create keyboard layouts.');
         }
 
         $languageTags = \App\Models\LanguageTag::orderBy('name')->get();
+
         return view('keyboards.create', compact('languageTags'));
     }
 
@@ -72,7 +73,7 @@ class KeyboardController extends Controller
     public function store(Request $request)
     {
         // Use policy to authorize
-        if (!auth()->user()->can('create', Keyboard::class)) {
+        if (! auth()->user()->can('create', Keyboard::class)) {
             return redirect()->route('keyboards.index')->with('status', 'Admins cannot create keyboard layouts.');
         }
 
@@ -127,17 +128,18 @@ class KeyboardController extends Controller
     public function edit(Keyboard $keyboard)
     {
         // Check if user is authenticated
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login')->with('status', 'You must be logged in to edit a keyboard layout.');
         }
 
         // Use policy to authorize
-        if (!auth()->user()->can('update', $keyboard)) {
+        if (! auth()->user()->can('update', $keyboard)) {
             return redirect()->route('keyboards.show', $keyboard)
                 ->with('status', 'You can only edit your own keyboard layouts.');
         }
 
         $languageTags = \App\Models\LanguageTag::orderBy('name')->get();
+
         return view('keyboards.edit', compact('keyboard', 'languageTags'));
     }
 
@@ -147,7 +149,7 @@ class KeyboardController extends Controller
     public function update(Request $request, Keyboard $keyboard)
     {
         // Use policy to authorize
-        if (!auth()->user()->can('update', $keyboard)) {
+        if (! auth()->user()->can('update', $keyboard)) {
             return redirect()->route('keyboards.show', $keyboard)
                 ->with('status', 'You can only edit your own keyboard layouts.');
         }
@@ -166,7 +168,7 @@ class KeyboardController extends Controller
         // Check for duplicate characters in the layout
         $duplicates = $this->getDuplicateKeys($validated['layout']);
 
-        if (!empty($duplicates)) {
+        if (! empty($duplicates)) {
             return back()->withInput()->withErrors([
                 'layout' => 'Each character can only be used once in the layout. Duplicate characters: '.implode(', ', array_keys($duplicates)),
             ]);
@@ -191,12 +193,12 @@ class KeyboardController extends Controller
     public function destroy(Keyboard $keyboard)
     {
         // Check if user is authenticated
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login')->with('status', 'You must be logged in to delete a keyboard layout.');
         }
 
         // Use policy to authorize
-        if (!auth()->user()->can('delete', $keyboard)) {
+        if (! auth()->user()->can('delete', $keyboard)) {
             return redirect()->route('keyboards.show', $keyboard)
                 ->with('status', 'You can only delete your own keyboard layouts.');
         }
@@ -210,7 +212,6 @@ class KeyboardController extends Controller
     /**
      * Check for duplicate characters in the keyboard layout.
      *
-     * @param array $layout
      * @return array Array of duplicate characters (empty if none)
      */
     private function getDuplicateKeys(array $layout)

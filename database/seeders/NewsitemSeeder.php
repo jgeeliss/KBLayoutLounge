@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Newsitem;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 
@@ -60,7 +59,7 @@ class NewsitemSeeder extends Seeder
         $sourceDir = database_path('seeders/news_pictures');
         $destDir = storage_path('app/public/news_pictures');
         // Create destination directory if it doesn't exist
-        if (!File::exists($destDir)) {
+        if (! File::exists($destDir)) {
             File::makeDirectory($destDir, 0755, true);
         }
 
@@ -68,7 +67,7 @@ class NewsitemSeeder extends Seeder
         if (File::exists($sourceDir)) {
             $files = File::files($sourceDir);
             foreach ($files as $file) {
-                File::copy($file->getPathname(), $destDir . '/' . $file->getFilename());
+                File::copy($file->getPathname(), $destDir.'/'.$file->getFilename());
             }
         }
     }

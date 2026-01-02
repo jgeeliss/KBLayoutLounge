@@ -13,7 +13,7 @@ class RatingController extends Controller
      */
     public function index()
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login')->with('status', 'You must be logged in to view your ratings.');
         }
 
@@ -31,7 +31,7 @@ class RatingController extends Controller
     public function store(Request $request, Keyboard $keyboard)
     {
         // Use policy to authorize
-        if (!auth()->user()->can('rate', $keyboard)) {
+        if (! auth()->user()->can('rate', $keyboard)) {
             return back()->withErrors(['rating' => 'You cannot rate your own keyboard layout.']);
         }
 

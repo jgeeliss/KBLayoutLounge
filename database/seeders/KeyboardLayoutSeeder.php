@@ -8,8 +8,8 @@ use App\Models\LanguageTag;
 use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class KeyboardLayoutSeeder extends Seeder
 {
@@ -343,8 +343,8 @@ class KeyboardLayoutSeeder extends Seeder
         $raters = [];
         for ($i = 1; $i <= 10; $i++) {
             $raters[] = User::create([
-                'user_alias' => 'user_' . $i,
-                'email' => 'user' . $i . '@example.com',
+                'user_alias' => 'user_'.$i,
+                'email' => 'user'.$i.'@example.com',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
             ]);
@@ -968,7 +968,7 @@ class KeyboardLayoutSeeder extends Seeder
         $sourceDir = database_path('seeders/profile_pictures');
         $destDir = storage_path('app/public/profile_pictures');
         // Create destination directory if it doesn't exist
-        if (!File::exists($destDir)) {
+        if (! File::exists($destDir)) {
             File::makeDirectory($destDir, 0755, true);
         }
 
@@ -976,7 +976,7 @@ class KeyboardLayoutSeeder extends Seeder
         if (File::exists($sourceDir)) {
             $files = File::files($sourceDir);
             foreach ($files as $file) {
-                File::copy($file->getPathname(), $destDir . '/' . $file->getFilename());
+                File::copy($file->getPathname(), $destDir.'/'.$file->getFilename());
             }
         }
     }

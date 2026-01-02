@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 /**
-* handles the signup process when a brand new user creates their account for the first time.
-*/
+ * handles the signup process when a brand new user creates their account for the first time.
+ */
 class AuthController extends Controller
 {
     public function create()
@@ -47,9 +47,9 @@ class AuthController extends Controller
         // Handle profile picture upload
         if ($request->hasFile('profile_picture')) {
             $file = $request->file('profile_picture');
-            $filename = time() . '_' . $user->user_alias . '.' . $file->getClientOriginalExtension();
+            $filename = time().'_'.$user->user_alias.'.'.$file->getClientOriginalExtension();
             $file->move(public_path('storage/profile_pictures'), $filename);
-            $user->profile_picture = 'profile_pictures/' . $filename;
+            $user->profile_picture = 'profile_pictures/'.$filename;
         }
 
         $user->save();
@@ -70,12 +70,11 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-
         // note: the $remember parameter controls the "remember me" functionality.
         // When set to true, Laravel will keep the user authenticated indefinitely (or until they manually log out)
         // source: https://kinsta.com/blog/laravel-authentication/
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->filled('remember'))) {
-            // By regenerating the session ID immediately after successful authentication, 
+            // By regenerating the session ID immediately after successful authentication,
             // you invalidate any session ID that might have been compromised before login:
             $request->session()->regenerate();
 
@@ -88,6 +87,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
+
         return redirect()->route('home')->with('status', 'You have been logged out successfully.');
     }
 }

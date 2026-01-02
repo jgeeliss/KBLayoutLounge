@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\LanguageTag;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class LanguageTagController extends Controller
 {
@@ -14,6 +13,7 @@ class LanguageTagController extends Controller
     public function index()
     {
         $languageTags = LanguageTag::orderBy('name')->get();
+
         return view('language-tags.index', compact('languageTags'));
     }
 
@@ -22,7 +22,7 @@ class LanguageTagController extends Controller
      */
     public function create()
     {
-        if (!auth()->user()->can('create', LanguageTag::class)) {
+        if (! auth()->user()->can('create', LanguageTag::class)) {
             return redirect()->route('language-tags.index')
                 ->with('status', 'You do not have permission to create language tags.');
         }
@@ -35,7 +35,7 @@ class LanguageTagController extends Controller
      */
     public function store(Request $request)
     {
-        if (!auth()->user()->can('create', LanguageTag::class)) {
+        if (! auth()->user()->can('create', LanguageTag::class)) {
             return redirect()->route('language-tags.index')
                 ->with('status', 'You do not have permission to create language tags.');
         }
@@ -62,6 +62,7 @@ class LanguageTagController extends Controller
     public function show(LanguageTag $languageTag)
     {
         $keyboards = $languageTag->keyboards()->with('user', 'ratings')->get();
+
         return view('language-tags.show', compact('languageTag', 'keyboards'));
     }
 
@@ -70,7 +71,7 @@ class LanguageTagController extends Controller
      */
     public function edit(LanguageTag $languageTag)
     {
-        if (!auth()->user()->can('update', $languageTag)) {
+        if (! auth()->user()->can('update', $languageTag)) {
             return redirect()->route('language-tags.index')
                 ->with('status', 'You do not have permission to edit this language tag.');
         }
@@ -83,13 +84,13 @@ class LanguageTagController extends Controller
      */
     public function update(Request $request, LanguageTag $languageTag)
     {
-        if (!auth()->user()->can('update', $languageTag)) {
+        if (! auth()->user()->can('update', $languageTag)) {
             return redirect()->route('language-tags.index')
                 ->with('status', 'You do not have permission to update this language tag.');
         }
 
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:language_tags,name,' . $languageTag->id,
+            'name' => 'required|string|max:255|unique:language_tags,name,'.$languageTag->id,
         ]);
 
         $languageTag->update($validated);
@@ -103,7 +104,7 @@ class LanguageTagController extends Controller
      */
     public function destroy(LanguageTag $languageTag)
     {
-        if (!auth()->user()->can('delete', $languageTag)) {
+        if (! auth()->user()->can('delete', $languageTag)) {
             return redirect()->route('language-tags.index')
                 ->with('status', 'You do not have permission to delete this language tag.');
         }

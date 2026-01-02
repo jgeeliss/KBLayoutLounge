@@ -8,13 +8,12 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-
     /**
      * Display the authenticated user's comments.
      */
     public function index()
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login')->with('status', 'You must be logged in to view your comments.');
         }
 
@@ -50,12 +49,12 @@ class CommentController extends Controller
     public function update(Request $request, Comment $comment)
     {
         // Check if user is authenticated
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login')->with('status', 'You must be logged in to edit a comment.');
         }
 
         // Use policy to authorize
-        if (!auth()->user()->can('update', $comment)) {
+        if (! auth()->user()->can('update', $comment)) {
             return back()->with('status', 'You can only edit your own comments.');
         }
 
@@ -76,12 +75,12 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         // Check if user is authenticated
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login')->with('status', 'You must be logged in to delete a comment.');
         }
 
         // Use policy to authorize
-        if (!auth()->user()->can('delete', $comment)) {
+        if (! auth()->user()->can('delete', $comment)) {
             return back()->with('status', 'You can only delete your own comments.');
         }
 

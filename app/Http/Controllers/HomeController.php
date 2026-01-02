@@ -14,8 +14,8 @@ class HomeController extends Controller
         $topKeyboards = Keyboard::with('ratings')
             ->get()
             // note: fn() is used to create an arrow function
-            ->filter(fn($keyboard) => $keyboard->totalRatings() > 0)
-            ->sortByDesc(fn($keyboard) => $keyboard->averageRating())
+            ->filter(fn ($keyboard) => $keyboard->totalRatings() > 0)
+            ->sortByDesc(fn ($keyboard) => $keyboard->averageRating())
             ->take(3);
 
         // Get latest 3 news items
