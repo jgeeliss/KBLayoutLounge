@@ -109,7 +109,7 @@ class KeyboardController extends Controller
             $keyboard->languageTags()->sync($validated['language_tags']);
         }
 
-        return redirect()->route('keyboards.index')
+        return redirect()->route('keyboards.myLayouts')
             ->with('status', "Keyboard '{$keyboard->name}' created successfully.");
     }
 
@@ -203,7 +203,7 @@ class KeyboardController extends Controller
 
         $keyboard->delete();
 
-        return redirect()->route('keyboards.index')
+        return redirect()->route('keyboards.myLayouts')
             ->with('status', 'Keyboard layout deleted successfully.');
     }
 
