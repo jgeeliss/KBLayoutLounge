@@ -39,9 +39,13 @@
                     <a href="#" onclick="toggleUserDropdown(event)"><span class="user-icon">👤</span> {{ auth()->user()->user_alias }}</a>
                     <ul id="user-dropdown-menu" class="dropdown-menu">
                         <li class="dropdown-item"><a href="{{ route('users.edit') }}">My profile</a></li>
-                        <li class="dropdown-item"><a href="{{ route('keyboards.myLayouts') }}">My layouts</a></li>
+                        @if (!auth()->user()->isAdmin())
+                            <li class="dropdown-item"><a href="{{ route('keyboards.myLayouts') }}">My layouts</a></li>
+                        @endif
                         <li class="dropdown-item"><a href="{{ route('comments.index') }}">My comments</a></li>
-                        <li class="dropdown-item"><a href="{{ route('ratings.index') }}">My ratings</a></li>
+                        @if (!auth()->user()->isAdmin())
+                            <li class="dropdown-item"><a href="{{ route('ratings.index') }}">My ratings</a></li>
+                        @endif
                         @if (auth()->user()->isAdmin())
                             <li class="dropdown-item"><a href="{{ route('users.index') }}">Manage Users</a></li>
                             <li class="dropdown-item"><a href="{{ route('language-tags.index') }}">Manage Tags</a></li>
