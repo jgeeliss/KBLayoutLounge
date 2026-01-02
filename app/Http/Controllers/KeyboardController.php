@@ -110,7 +110,7 @@ class KeyboardController extends Controller
         }
 
         return redirect()->route('keyboards.index')
-            ->with('success', 'Keyboard created successfully.');
+            ->with('status', "Keyboard '{$keyboard->name}' created successfully.");
     }
 
     /**
