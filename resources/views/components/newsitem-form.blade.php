@@ -9,6 +9,14 @@
     'cancelRoute' // URL for the cancel button
 ])
 
+@if ($errors->any())
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+@endif
+
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
     @csrf
     @if($method !== 'POST')
