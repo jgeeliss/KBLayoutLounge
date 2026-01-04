@@ -37,7 +37,7 @@ After cloning this repository, follow these steps to get started:
    - set up database connection (SQLite by default)
    - Configure mail settings for password resets and contact form
 
-3. ** Generate application key**
+3. **Generate application key**
    ```bash
    php artisan key:generate
    ```
@@ -70,11 +70,6 @@ Admin users have special permissions:
 - Delete any comment (not just their own)
 
 ## Development
-
-### Running Tests
-```bash
-php artisan test
-```
 
 ### Code Style
 This project uses Laravel Pint for code formatting:
